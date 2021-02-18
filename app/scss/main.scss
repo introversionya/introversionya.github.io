@@ -1,0 +1,194 @@
+// Подключаем шрифты
+@import 'fonts';
+
+// Подключаем normalize.css https://github.com/necolas/normalize.css
+@import 'normalize';
+
+// Подключаем общие стили для всего проекта
+@import 'config';
+
+// Подключаем контейнер 
+@import 'container';
+
+/*! Основные стили */
+
+.header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  min-height: 65px;
+  background: cadetblue;
+}
+
+.header__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  transform-style: preserve-3d;
+  width: 45px;
+  position: relative;
+}
+
+.logo__link {
+  display: flex;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: opacity .2s;
+  &:hover {
+    opacity: .7;
+    transform: rotateY(360deg);
+    animation: rotate 2s infinite;
+  }
+}
+
+@keyframes rotate {
+  50% {
+    transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateX(360deg);
+    }
+}
+
+.logo__title {
+  user-select: none;
+  background: rgb(0, 0, 0);
+  box-shadow: 1px 2px 2px 1px rgb(61, 60, 60);
+  color: aliceblue;
+  padding: 2px 5px;
+  position: absolute;
+  top: calc(50% - 11.25px);
+  right: 0px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: 1s;
+}
+
+.logo:hover .logo__title {
+  border-top-right-radius: 250px;
+  border-bottom-right-radius: 250px;
+  border-top-left-radius: 250px;
+  border-bottom-left-radius: 250px;
+  visibility: visible;
+  opacity: 1;
+  right: -115px;
+}
+
+.socials {
+  display: flex;
+  a {
+    margin-right: 25px;
+    &:last-child {
+      margin-right: 0;
+    }
+      svg {
+        display: flex;
+        width: 30px;
+        height: 30px;
+      }
+  }
+}
+
+.socials svg:hover path {
+  transition: all linear .3s;
+  fill: #fff;
+}
+
+.menu {
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      margin-right: 30px;
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        white-space: nowrap;
+        padding: 5px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid transparent;
+        transition: .7s;
+        &:hover {
+          border-color: #ffc222;
+        }
+      }
+    }
+  }
+}
+
+ /* The switch - the box around the slider */
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+} 
+
+.particles-js-canvas-el {
+  position: absolute;
+}
+
+.lazy-hidden{background:url(loading.gif) 50% 50% no-repeat #eee}
+
+
