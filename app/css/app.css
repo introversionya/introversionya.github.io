@@ -374,56 +374,28 @@ body {
 .menu ul li a:hover {
   border-color: #ffc222
 }
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 24px
-}
-.switch input {
-  display: none
-}
-.slider {
-  position: absolute;
+.btn-toggleTheme {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  overflow: hidden;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  -o-transition: .4s;
-  transition: .4s
+  background: 0 0
 }
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: #fff;
-  -webkit-transition: .4s;
-  -o-transition: .4s;
-  transition: .4s
+.btn-toggleTheme svg {
+  width: 30px;
+  height: 30px
 }
-input:checked + .slider {
-  background-color: #2196f3
-}
-input:focus + .slider {
-  -webkit-box-shadow: 0 0 1px #2196f3;
-  box-shadow: 0 0 1px #2196f3
-}
-input:checked + .slider:before {
-  -webkit-transform: translateX(16px);
-  -ms-transform: translateX(16px);
-  transform: translateX(16px)
-}
-.slider.round {
-  border-radius: 34px
-}
-.slider.round:before {
-  border-radius: 50%
+.light-theme svg path {
+  fill: #9de6f7
 }
 .particles-js-canvas-el {
   position: absolute
