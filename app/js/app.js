@@ -10,9 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Темная тема
-    // const toggleBtn = document.querySelectorAll('.btn-toggleTheme');
     const toggleBtn = document.querySelector('.btn-toggleTheme');
-    const linkThemes = document.querySelector('#link-themes');
+    // const linkThemes = document.querySelector('#link-themes');
 
     function checkStatusTheme () {
 
@@ -30,10 +29,35 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Запускаем функцию при клике
-    const toggleTheme = addEventListener ('click', function() {
+    const toggleTheme = toggleBtn.addEventListener ('click', function() {
       checkStatusTheme ();
       console.log('click');
     })
+    
+
+    // Проверка на адблок
+    const adblockBox = document.querySelector('.adblock-box');
+    const alertAdb = document.querySelector('.alert-adb');
+
+    setInterval (checkAdb, 15000);
+    
+    function checkAdb () {
+      if (adblockBox.clientHeight < 1) {
+        console.log('есть адблок');
+        alertAdb.style.display = 'block';
+      } else {
+        console.log('нет адблок');
+        alertAdb.style.display = 'none';
+      }
+    }
+
+    // Закрыть окно алерт адблок
+    const alertAdbClose = document.querySelector('.alert-adb__close');
+    const alertAdbClosed = alertAdbClose.addEventListener('click', function(){
+      alertAdb.style.display = 'none';
+    })
+
+    
     
      
       

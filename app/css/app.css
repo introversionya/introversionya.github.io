@@ -395,11 +395,54 @@ body {
   height: 30px
 }
 .light-theme svg path {
-  fill: #9de6f7
+  fill: #fff
 }
 .particles-js-canvas-el {
   position: absolute
 }
 .lazy-hidden {
   background: url(loading.gif) 50% 50% no-repeat #eee
+}
+.adblock-box {
+  position: absolute;
+  top: 0;
+  left: -1000px;
+  z-index: -1
+}
+.alert-adb {
+  display: none;
+  position: absolute;
+  top: 100px;
+  left: calc(50% - 175px);
+  z-index: 100
+}
+.alert-adb svg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 350px;
+  height: 350px
+}
+.alert-adb__close {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px
+}
+.alert-adb__close:hover path {
+  fill: #f04242
 }
