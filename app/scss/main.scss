@@ -61,6 +61,10 @@
   user-select: none;
   background: rgb(0, 0, 0);
   box-shadow: 1px 2px 2px 1px rgb(61, 60, 60);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   color: aliceblue;
   padding: 2px 5px;
   position: absolute;
@@ -73,13 +77,9 @@
 }
 
 .logo:hover .logo__title {
-  border-top-right-radius: 250px;
-  border-bottom-right-radius: 250px;
-  border-top-left-radius: 250px;
-  border-bottom-left-radius: 250px;
   visibility: visible;
   opacity: 1;
-  right: -115px;
+  right: -120px;
 }
 
 .socials {
@@ -127,6 +127,7 @@
 }
 
 .btn-toggleTheme {
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,33 +162,45 @@
 }
 
 .alert-adb {
-  display: none;
-  position: absolute;
-  top: 100px;
+  padding: 20px 30px;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  width: 410px;
+  height: max-content;
+  top: -450px;
   left: calc(50% - 175px);
   z-index: 100;
-  // background: pink;
-  // width: 350px;
-  // height: 350px;
-  // border-radius: 10px;
-  svg {
-    display: flex;
-    width: 350px;
-    height: 350px;
+  background: #c7b5d9;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);
+  border-radius: 10px;
+  transition: .7s;
+  &:hover {
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
   }
+    span {
+      display: block;
+      margin-bottom: 35px;
+    }
+      svg {
+        display: flex;
+        width: 350px;
+        height: auto;
+      }
 }
 
 .alert-adb__close {
   cursor: pointer;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 50%;
+  overflow: hidden;
   width: 35px;
   height: 35px;
   

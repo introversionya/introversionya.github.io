@@ -39,12 +39,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const adblockBox = document.querySelector('.adblock-box');
     const alertAdb = document.querySelector('.alert-adb');
 
-    setInterval (checkAdb, 15000);
+    setInterval (checkAdb, 2000);
     
     function checkAdb () {
       if (adblockBox.clientHeight < 1) {
         console.log('есть адблок');
-        alertAdb.style.display = 'block';
+        alertAdb.style.top = 'calc(50% - 205px)';
+        alertAdb.style.opacity = '1';
+        alertAdb.style.visibility = 'visible';
       } else {
         console.log('нет адблок');
         alertAdb.style.display = 'none';
@@ -55,6 +57,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const alertAdbClose = document.querySelector('.alert-adb__close');
     const alertAdbClosed = alertAdbClose.addEventListener('click', function(){
       alertAdb.style.display = 'none';
+      if (alertAdb.style.display === 'none') {
+        clearInterval(checkAdb);// Не работает - нужно поправить
+      }
     })
 
     
