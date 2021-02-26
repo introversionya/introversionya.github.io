@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM загружен успешно");
+  'use strict';
 
   particlesJS.load("particles-js", "assets/particles.json", function () {
     console.log("callback - particles.js config loaded");
@@ -49,26 +50,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Закрыть окно алерт адблок
+  let fvf;
   const alertAdbClose = document.querySelector(".alert-adb__close");
 
   const alertAdbClosed = alertAdbClose.addEventListener("click", function () {
     alertAdb.style.display = "none";
+    fvf = localStorage.setItem("btn", "false");
   });
-
-  // 1 - добавим в LocalStorage элемент с ключом «bgColor» и значением «green»
-  localStorage.setItem("bgColor", "green");
-  // 2 - получим значение по ключу «bgColor» и сохраним его в переменную «bgColor»
-  var bgColor = localStorage.getItem("bgColor");
-
-
-
-
-
-
-
-
-
-
+  console.log(fvf);
+  
 
   
+
+
+
+
+
+
+
+
+
+
 });
