@@ -20,6 +20,15 @@ img {
   height: auto;
 }
 
+// Класс для авто дефисов при резайсе окна (не работает на движке blink)
+.text-wrap {
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
 // Настройки body
 body {
   min-width: 320px;
