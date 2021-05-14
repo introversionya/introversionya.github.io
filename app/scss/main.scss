@@ -10,7 +10,31 @@
 // Подключаем контейнер 
 @import 'container';
 
+// Подключаем стили для tooltips
+@import 'tooltips';
+
+// Подключаем стили для кнопки "вверх"
+@import 'scroll';
+
+// Подключаем стили для скролл бара
+@import 'scrollbar';
+
 /*! Основные стили */
+
+.overlay {
+  overflow: hidden;
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 25;
+  }
+}
 
 .header {
   position: relative;
@@ -19,6 +43,17 @@
   align-items: center;
   min-height: 65px;
   background: cadetblue;
+  border-bottom: 1px solid #4a4a4a;
+  transition: all 1s;
+}
+
+.header--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgb(68, 130, 131);
+  border-bottom: 1px solid #000;
 }
 
 .header__inner {
@@ -30,21 +65,28 @@
 }
 
 .logo {
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
   transform-style: preserve-3d;
   width: 45px;
   position: relative;
+  transition: all .5s;
+  &:hover {
+    border-color: blanchedalmond;
+  }
 }
 
 .logo__link {
   display: flex;
-  object-fit: cover;
   overflow: hidden;
-  border-radius: 50%;
-  transition: opacity .2s;
-  &:hover {
-    opacity: .7;
-    transform: rotateY(360deg);
-    animation: rotate 2s infinite;
+  transition: all .5s;
+  img {
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+    // animation: rotate 2s infinite;
+    // transform: rotateY(360deg);
   }
 }
 
@@ -55,31 +97,6 @@
     100% {
       transform: rotateX(360deg);
     }
-}
-
-.logo__title {
-  user-select: none;
-  background: rgb(0, 0, 0);
-  box-shadow: 1px 2px 2px 1px rgb(61, 60, 60);
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  color: aliceblue;
-  padding: 2px 5px;
-  position: absolute;
-  top: calc(50% - 11.25px);
-  right: 0px;
-  white-space: nowrap;
-  visibility: hidden;
-  opacity: 0;
-  transition: 1s;
-}
-
-.logo:hover .logo__title {
-  visibility: visible;
-  opacity: 1;
-  right: -120px;
 }
 
 .socials {
@@ -102,10 +119,15 @@
   fill: #fff;
 }
 
+.socials__link {
+  display: block;
+}
+
 .menu {
   ul {
     list-style: none;
     display: flex;
+    align-items: center;
     li {
       margin-right: 30px;
       &:last-child {
@@ -148,6 +170,9 @@
   }
 }
 
+// about
+@import "about.scss";
+
 .particles-js-canvas-el {
   position: absolute;
 }
@@ -162,14 +187,17 @@
 }
 
 .alert-adb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px 30px;
   opacity: 0;
   visibility: hidden;
   position: fixed;
-  width: 410px;
+  width: 300px;
   height: max-content;
-  top: -450px;
-  left: calc(50% - 175px);
+  bottom: -450px;
+  left: calc(50% - 150px);
   z-index: 100;
   background: #c7b5d9;
   box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);
@@ -180,7 +208,6 @@
   }
     span {
       display: block;
-      margin-bottom: 35px;
     }
       svg {
         display: flex;
@@ -189,23 +216,307 @@
       }
 }
 
-.alert-adb__close {
+.btn {
   cursor: pointer;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
-  width: 35px;
-  height: 35px;
-  
+  width: 25px;
+  height: 25px;
+  &::after,
+  &::before {
+    position: absolute;
+    content: '';
+    background: black;
+    width: 15px;
+    height: 2px;
+    transition: all .3s;
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
 }
 
-.alert-adb__close:hover path {
-  fill: #f04242;
+.btn:hover {
+  &::after,
+  &::before {
+    background: red;
+  }
+  &::after {
+    transform: rotate(45deg);
+  }
+  &::before {
+    transform: rotate(-45deg);
+  }
+}
+
+.btn:active {
+  border: 1px solid red;
+  transform: scale(1.03);
+}
+
+// @import "media.scss";
+
+.num1,
+.num2,
+.num3,
+.num4,
+.num5 {
+  height: calc(100vh - 64px);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.num1 {
+  background-color: brown;
+}
+
+.num2 {
+  background-color: rgb(116, 79, 79);
+}
+
+.num3 {
+  background-color: rgb(6, 247, 58);
+}
+
+.num4 {
+  background-color: rgb(4, 78, 83);
+}
+
+.num5 {
+  background-color: rgb(153, 165, 42);
+}
+
+.controls {
+  position: fixed;
+  top: 50%;
+  left: 7px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.controls__btn {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  transition: all .3s;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:hover {
+    color: lightcoral;
+  }
+}
+
+.controls__btn--active {
+  background-color: gray;
+  border: 1px solid #fff;
+  &:hover {
+    border: 1px solid lightcoral;
+  }
+}
+
+.resize {
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  padding: 7px 25px;
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: black;
+  color: #fff;
+  transition: all 1s;
+}
+
+.resize__width,
+.resize__height {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.resize__width {
+  margin-bottom: 5px;
+}
+
+.resize__num {
+  padding: 1px 3px;
+  margin-left: 7px;
+  color: #9b96d7;
+  border: 1px solid #9b96d7;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.arrow {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  pointer-events: none;
+}
+
+.arrow--up {
+  top: 25%;
+  left: 50%;
+}
+
+.arrow--down {
+  bottom: 5%;
+  left: 50%;
+}
+
+.arrow__up {
+  width: 30px;
+  height: 30px;
+  border-top: 3px solid #6E18C0;
+  border-right: 3px solid #6E18C0;
+  transform: rotate(-45deg);
+  opacity: 0;
+  transition: all .3s;
+}
+
+.arrow__down {
+  width: 30px;
+  height: 30px;
+  border-top: 3px solid #6E18C0;
+  border-right: 3px solid #6E18C0;
+  transform: rotate(135deg);
+  opacity: 0;
+  transition: all .3s;
+}
+
+.info {
+  user-select: none;
+  padding: 25px;
+  z-index: 15;
+  background-color: #d2cbcd;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100vh - 65px);
+  transition: all .5s;
+}
+
+.info__inner {
+  padding: 20px 100px;
+  position: relative;
+  border: 1px solid transparent;
+  border-left-color: black;
+  border-right-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.info__line {
+  padding: 5px 100px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  border-bottom-color: #5f9ea0;
+  margin-bottom: 20px;
+  transition: all .2s;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:hover {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    background-color: #b9b1b1;
+    border-bottom-color: red;
+    span {
+      transition: all .5s;
+      color: blue;
+    }
+    span + span {
+      transition: all .5s;
+      color: red;
+    }
+  }
+}
+
+.btn--info {
+  top: 20px;
+  right: 20px;
+}
+
+.btn--open {
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border: 2px solid transparent;
+  transition: all linear .3s;
+  span {
+    transition: all linear .3s;
+    transform: rotate(0);
+  }
+  &:hover,
+  &:active {
+    border: 2px solid blue;
+    span {
+      color: blue;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.btn--info-active {
+  right: -2000px;
+}
+
+.btn--disclaimer {
+  cursor: pointer;
+  padding: 0;
+  z-index: 100;
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  transition: all .5s;
+  &:hover {
+    color: blue;
+    border: 2px solid blue;
+  }
 }

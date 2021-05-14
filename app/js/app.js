@@ -1,14 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOM загружен успешно");
+  // console.log("DOM загружен успешно");
   'use strict';
 
-  particlesJS.load("particles-js", "assets/particles.json", function () {
-    console.log("callback - particles.js config loaded");
-  });
+  // Глобальные переменные
+  const titleDefault = 'blog by introversion';
+  const title = document.getElementsByTagName('title');
 
-  $(function () {
-    $(".logo__img").lazyLoadXT();
-  });
+  // particlesJS.load("particles-js", "assets/particles.json", function () {
+  //   // console.log("callback - particles.js config loaded");
+  // });
+
+  // $(function () {
+  //   $(".logo__img").lazyLoadXT();
+  // });
+
+  // Определяем первую загрузку сайта
+  checkFirstVisit();
+
+  function checkFirstVisit() {
+    if (localStorage.getItem('firstVisit') === null) {
+      // console.log('Первая загрузка сайта');
+      localStorage.setItem('firstVisit', 'yes');
+    } else if (localStorage.getItem('firstVisit') === 'yes') {
+      localStorage.setItem('firstVisit', 'no');
+      // console.log('Сайт уже загружался ранее');
+    } else {
+      // console.log('Сайт уже загружался ранее');
+    }
+  }  
 
   // Темная тема
   const toggleBtn = document.querySelector(".btn-toggleTheme");
@@ -36,39 +55,304 @@ document.addEventListener("DOMContentLoaded", function () {
   const adblockBox = document.querySelector(".adblock-box");
   const alertAdb = document.querySelector(".alert-adb");
 
-  setInterval(checkAdb, 2000);
+  checkAdb();
 
   function checkAdb() {
     if (adblockBox.clientHeight < 1) {
       console.log("есть адблок");
-      alertAdb.style.top = "calc(50% - 205px)";
+      localStorage.setItem("Adb", "true");
+      infoResultAdblock();
+      alertAdb.style.bottom = "calc(50% - 29.2px)";
       alertAdb.style.opacity = "1";
       alertAdb.style.visibility = "visible";
+      document.getElementsByTagName('body')[0].classList.add('overlay');
     } else {
       console.log("нет адблок");
+      localStorage.setItem("Adb", "false");
+      infoResultAdblock();
+      alertAdb.remove();
     }
   }
 
   // Закрыть окно алерт адблок
-  let fvf;
-  const alertAdbClose = document.querySelector(".alert-adb__close");
+  if (document.querySelector(".alert-adb__close") !== null) {
+    document.querySelector(".alert-adb__close").addEventListener("click", function () {
+      localStorage.setItem("alertAdbClose", "true");
+      document.getElementsByTagName('body')[0].classList.remove('overlay');
+      alertAdb.remove();
+    });
+  };
 
-  const alertAdbClosed = alertAdbClose.addEventListener("click", function () {
-    alertAdb.style.display = "none";
-    fvf = localStorage.setItem("btn", "false");
+  // Не показывать акно адблок повторно после закрытия
+  if (localStorage.getItem("alertAdbClose") === 'true') {
+    alertAdb.remove();
+    document.getElementsByTagName('body')[0].classList.remove('overlay');
+    console.log('user уже закрывал окно адблок');
+  };
+
+  // Динамический title
+  let titleDraw;
+
+  // titledynamic();
+
+  function titledynamic() {
+
+    let i = 0; // Начальный счетчик   
+    let getTitle = title[0]; // Получаем title
+    let textTitle = getTitle.textContent; // Получаем текст title
+    let textLength = textTitle.length // Длина текста
+    let arrTextTitle = textTitle.split(''); // Символьный массив
+
+    if (textTitle === textTitle) {
+
+      getTitle.innerHTML = ''; // Очистим title
+
+        titleDraw = setInterval( () => {
+          let x = arrTextTitle[i++];
+            if (x !== undefined) {
+              getTitle.innerHTML += x;
+            } else if (textTitle === textTitle) {
+              i = 0; // Обнулим счетчик
+              getTitle.innerHTML = '';
+            }
+        }, 500);
+    }  
+  };
+
+  // Меняем title если вкладка не в фокусе
+  setInterval( () => {
+    if (document.hidden === false) {
+      // console.log('в фокусе');
+    } else {
+      // console.log('не в фокусе');
+      title[0].innerHTML = 'Возвращайся :(';
+    }
+  }, 500);
+
+
+  window.addEventListener('blur', function() {
+    // console.log('blur');
+    title[0].innerHTML = '';
+    clearInterval(titleDraw);
   });
-  console.log(fvf);
+  
+  window.addEventListener('focus', function() {
+    // console.log('focus');
+    title[0].innerHTML = '';
+    title[0].innerHTML = 'blog by introversion';
+    titledynamic();
+  });
+
+  
+  // Закрепленный header
+  window.addEventListener('scroll', function(event){
+    const head = document.querySelector('.header');
+    const headHeight = head.clientHeight; // => 64
+
+    if (document.documentElement.getBoundingClientRect().top <= -64) {
+      // console.log('Шапка скрылась');
+      head.classList.add('header--fixed');
+    } else {
+      head.classList.remove('header--fixed');
+    }
+
+  })
+
+  // Переключение секций (controls)
+  controlsBtnCount();
+
+  function controlsBtnCount() {
+    const filterSection = document.querySelectorAll('.main > section');
+    const controls = document.querySelector('.controls');
+
+    filterSection.forEach( function(el, index, arr) {
+      let getSectionClass = el.attributes[0].value;
+      controls.innerHTML += `
+      <button class="controls__btn" tooltip="${'Секция: ' +  getSectionClass}" tooltip-position="right">${index + 1}</button>
+    `
+    });
+    
+  }
+
+  // Присвоим уникальный id-якорь для каждой секции
+  setIdSection();
+
+  function setIdSection() {
+    const sectionAll = document.querySelectorAll('section');
+
+    for (let i = 0; i < sectionAll.length; i++) {
+      sectionAll[i].id = `${'Anchor-' + (i + 1)}`;
+    }
+    
+  }
+
+  // controls показывает активную секцию
+  function showActiveSection() {
+    
+    // let blockPosition = document.querySelector('section').offsetTop, // Расстояние элемента по отношению к верхней части
+    //     windowScrollPosition = blockPosition.scrollTop;
+    //     console.log(document);
+
+    // if( blockPosition < windowScrollPosition ) {
+    //   // console.log('1');
+    // } else {
+    //   // console.log('2');
+    // }
+  }
+  
+
+
+
+
+
+
+
+
+  // Скролл сразу на след. секцию
+  window.addEventListener('scroll', function(event) {
+
+    let top = window.pageYOffset // Позиция скролла
+    let displayHeight = document.documentElement.clientHeight; // Определим высоту экрана монитора
+    let displayWidth = document.documentElement.clientWidth; // Определим ширину экрана монитора
+
+    onScroll();
+    showActiveSection();
+
+  });
+
+  // Определим направление скролла и покажем направление стрелкой
+  let scroll = 0;
+  
+  function onScroll() {
+    let top = window.pageYOffset;
+    const scrollUp = document.querySelector('.arrow__up');
+    const scrollDown = document.querySelector('.arrow__down');
+
+    if (scroll > top) {
+      // console.log('скрол вверх');
+      scrollUp.style.opacity = '1';
+      setInterval(() => {
+        scrollUp.style.opacity = '0';
+      }, 500);
+    } else if (scroll < top) {
+      // console.log('скрол вниз');
+      scrollDown.style.opacity = '1';
+      setInterval(() => {
+        scrollDown.style.opacity = '0';
+      }, 500);
+    } 
+    scroll = top;
+  }
+
+  // Скролл вверх
+  function scrollUp(event) {
+
+    window.scrollTo({
+      top: -200,
+      behavior: 'smooth'
+    })
+
+  };
+
+  // Скролл вниз
+  function scrollDown(event) {
+    
+    window.scrollTo({
+      top: 200,
+      behavior: 'smooth'
+    })
+
+  };
   
 
   
 
+  // При ресайзе показывать px
+  window.onresize = function resizeShow(event) {
+    let displayHeight = document.documentElement.clientHeight; // Определим высоту экрана монитора
+    let displayWidth = document.documentElement.clientWidth; // Определим ширину экрана монитора
+    const resize = document.querySelector('.resize');
+    resize.style.opacity = '1';
+
+    resize.innerHTML = `
+      <span class="resize__width">Ширина:<span class="resize__num">${displayWidth + 'px'}</span></span>
+      <span class="resize__height">Высота:<span class="resize__num">${displayHeight + 'px'}</span></span>
+    `
+
+    setTimeout( () => {
+      resize.style.opacity = '0';
+    }, 3500);
+
+  }
+
+  // Открыть/закрыть блок "info"
+  infoShowToggle();
+
+  function infoShowToggle() {
+    const blockInfo = document.querySelector('.info');
+    const btnInfo = document.querySelector('.btn--info');
+    const btnOpen = document.querySelector('.btn--open');
+
+    btnInfo.addEventListener('click', function() {
+      blockInfo.classList.toggle('btn--info-active');
+      document.getElementsByTagName('body')[0].style.overflow = 'auto';
+      setTimeout(() => {
+        blockInfo.style.display = 'none';
+      }, 1000);
+    })
+
+    btnOpen.addEventListener('click', function() {
+      blockInfo.classList.toggle('btn--info-active');
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+      setTimeout(() => {
+        blockInfo.style.display = 'block';
+      }, 100);
+    })
+
+  }
+  
+  // Выводим информацию - первая или нет загрузка
+  checkFirstLoad();
+
+  function checkFirstLoad() {
+    
+    let loadTwo = document.querySelector('.first-load');
+
+    if ( localStorage.getItem('firstVisit') === 'yes' ) {
+      loadTwo.innerHTML = 'yes';
+    } else {
+      loadTwo.innerHTML = 'no';
+    }
+
+  }
+
+  // Выводим результат проверки на наличие адблок
+  function infoResultAdblock() {
+
+    const adbInfoOut = document.querySelector('.adb-info');
+
+    if ( localStorage.getItem("Adb") === 'true' ) {
+      adbInfoOut.innerHTML = 'Yes';
+    } else {
+      adbInfoOut.innerHTML = 'No';
+    }
+
+  }
+
+  
+  
 
 
 
 
 
 
+    
+
+  
 
 
 
-});
+
+
+}); // DOMContentLoaded
