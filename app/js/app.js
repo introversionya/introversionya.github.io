@@ -357,6 +357,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // }
 
+  // Выводим user agent 
+  getUserAgent();
+
+  function getUserAgent() {
+    const idBrowser = document.querySelector('.user-agent');
+    let userAgent = navigator.userAgent;
+
+    if (userAgent.indexOf('Firefox') > -1) {
+      idBrowser.innerHTML = 'Firefox';
+    } else if (userAgent.indexOf('Opera') > -1) {
+      idBrowser.innerHTML = 'Opera';
+    } else if (userAgent.indexOf('Trident') > -1) {
+      idBrowser.innerHTML = 'IE';
+    } else if (userAgent.indexOf('Edg') > -1) {
+      idBrowser.innerHTML = 'Edge';
+    } else if (userAgent.indexOf('Chrome') > -1) {
+      idBrowser.innerHTML = 'Chrome';
+    } else if (userAgent.indexOf('Safari') > -1) {
+      idBrowser.innerHTML = 'Safari';
+    } else {
+      idBrowser.innerHTML = 'unknown';
+    }
+
+    idBrowser.style.cursor = 'pointer';
+    idBrowser.setAttribute('title', `${userAgent}`);
+  }
+
   // Выводим информацию о времени последней сессии
   sessionTime();
 
