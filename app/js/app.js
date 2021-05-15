@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function checkAdb() {
     if (adblockBox.clientHeight < 1) {
-      console.log("есть адблок");
+      // console.log("есть адблок");
       localStorage.setItem("Adb", "true");
       infoResultAdblock();
       alertAdb.style.bottom = "calc(50% - 29.2px)";
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alertAdb.style.visibility = "visible";
       document.getElementsByTagName('body')[0].classList.add('overlay');
     } else {
-      console.log("нет адблок");
+      // console.log("нет адблок");
       localStorage.setItem("Adb", "false");
       infoResultAdblock();
       alertAdb.remove();
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("alertAdbClose") === 'true') {
     alertAdb.remove();
     document.getElementsByTagName('body')[0].classList.remove('overlay');
-    console.log('user уже закрывал окно адблок');
+    // console.log('user уже закрывал окно адблок');
   };
 
   // Динамический title
@@ -319,11 +319,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let loadTwo = document.querySelector('.first-load');
 
     if ( localStorage.getItem('firstVisit') === 'yes' ) {
-      loadTwo.innerHTML = 'yes';
+      loadTwo.innerHTML = 'Yes';
     } else {
-      loadTwo.innerHTML = 'no';
+      loadTwo.innerHTML = 'No';
     }
 
+  }
+
+  // Выводим время за которое загрузился сайт
+  loadTime();
+
+  function loadTime() {
+    let time = performance.now();
+    document.querySelector('.time').innerHTML = time + 'ms';
   }
 
   // Выводим результат проверки на наличие адблок
@@ -338,6 +346,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
   }
+
+  // Выводим информацию о localStorage
+  // getInfoStorage();
+
+  // function getInfoStorage() {
+  //   const infoStorage = document.querySelector('.info-storage');
+    
+    
+
+  // }
+
+  // Выводим информацию о времени последней сессии
+  sessionTime();
+
+  function sessionTime() {
+    const sessionTime = document.querySelector('.session-time');
+    let count = 0;
+
+    let hour = 0; 
+    let minutes = 0;
+    let seconds;
+
+    let timeInterval = setInterval(() => {
+      count = count + 1;
+      if (count === 60) {
+        count = 0;
+        minutes = minutes + 1;
+      } else if (minutes === 60) {
+        minutes = 0;
+        hour = hour + 1;
+      } else if (hour === 24) {
+        clearInterval(timeInterval);
+      }
+      seconds = count;
+      
+      let fullTime = hour + 'h ' + minutes + 'm ' + seconds + "s";
+      sessionTime.innerHTML = fullTime;
+
+      if (hour === 24) {
+        sessionTime.innerHTML = 'Больше 24 часов';
+      }
+
+    }, 1000);
+    
+  } // sessionTime() end
 
   
   
