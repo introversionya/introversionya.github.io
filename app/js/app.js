@@ -318,8 +318,15 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let loadTwo = document.querySelector('.first-load');
 
+    // Генерация уникального id
+    let id = 10 * 15 * Math.random() * 10 / 2 + 47 * Math.random();
+    let userIdKey = ((id.toFixed() * id.toFixed()) * (id.toFixed() * id.toFixed())) * ((id.toFixed() * id.toFixed()) * (id.toFixed() * id.toFixed())) / 1000000000;
+    // console.log('userIdKey ' + userIdKey.toFixed());
+
     if ( localStorage.getItem('firstVisit') === 'yes' ) {
       loadTwo.innerHTML = 'Yes';
+      // Добавим уникальный id
+      localStorage.setItem('userKey', `${userIdKey.toFixed()}`);
     } else {
       loadTwo.innerHTML = 'No';
     }
@@ -331,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadTime() {
     let time = performance.now();
-    document.querySelector('.time').innerHTML = time + 'ms';
+    document.querySelector('.time').innerHTML = time.toFixed(0) + 'ms';
   }
 
   // Выводим результат проверки на наличие адблок

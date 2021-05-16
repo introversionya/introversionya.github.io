@@ -103,6 +103,7 @@
   display: flex;
   a {
     margin-right: 25px;
+    text-decoration: none;
     &:last-child {
       margin-right: 0;
     }
@@ -117,10 +118,6 @@
 .socials svg:hover path {
   transition: all linear .3s;
   fill: #fff;
-}
-
-.socials__link {
-  display: block;
 }
 
 .menu {
