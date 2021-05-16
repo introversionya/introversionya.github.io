@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Получим ip
   let ipAddressUser;
 
-  // getIp();
+  getIp();
 
   function getIp() {
     const ip = document.querySelector('.ip');
