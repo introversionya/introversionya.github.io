@@ -44,7 +44,7 @@
   min-height: 65px;
   background: cadetblue;
   border-bottom: 1px solid #4a4a4a;
-  transition: all 1s;
+  transition: all 1.5s;
 }
 
 .header--fixed {
@@ -54,6 +54,14 @@
   width: 100%;
   background: rgb(68, 130, 131);
   border-bottom: 1px solid #000;
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+  .socials a svg {
+    width: 25px;
+    height: 25px;
+  }
 }
 
 .header__inner {
@@ -70,6 +78,7 @@
   cursor: pointer;
   transform-style: preserve-3d;
   width: 45px;
+  height: 45px;
   position: relative;
   transition: all .5s;
   &:hover {
@@ -101,6 +110,7 @@
 
 .socials {
   display: flex;
+  align-items: center;
   a {
     margin-right: 25px;
     text-decoration: none;
@@ -334,6 +344,7 @@
 }
 
 .resize {
+  z-index: 20;
   opacity: 0;
   user-select: none;
   pointer-events: none;

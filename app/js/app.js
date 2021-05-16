@@ -145,18 +145,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   // Закрепленный header
-  window.addEventListener('scroll', function(event){
-    const head = document.querySelector('.header');
-    const headHeight = head.clientHeight; // => 64
+  
+  const head = document.querySelector('.header');
+  checkHeadHeight();
 
+  function checkHeadHeight() {
     if (document.documentElement.getBoundingClientRect().top <= -64) {
       // console.log('Шапка скрылась');
-      head.classList.add('header--fixed');
+      head.classList.add('header--fixed');    
     } else {
       head.classList.remove('header--fixed');
     }
+  }
 
-  })
+  window.addEventListener('scroll', checkHeadHeight);
+  
 
   // Переключение секций (controls)
   controlsBtnCount();
@@ -320,13 +323,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Генерация уникального id
     let id = 10 * 15 * Math.random() * 10 / 2 + 47 * Math.random();
-    let userIdKey = ((id.toFixed() * id.toFixed()) * (id.toFixed() * id.toFixed())) * ((id.toFixed() * id.toFixed()) * (id.toFixed() * id.toFixed())) / 1000000000;
-    // console.log('userIdKey ' + userIdKey.toFixed());
+    let userIdKey = ((id.toFixed(0) * id.toFixed(0)) * (id.toFixed(0) * id.toFixed(0))) * ((id.toFixed(0) * id.toFixed(0)) * (id.toFixed(0) * id.toFixed(0))) / 1000000000;
+    console.log('userIdKey ' + userIdKey.toFixed(0));
 
     if ( localStorage.getItem('firstVisit') === 'yes' ) {
       loadTwo.innerHTML = 'Yes';
       // Добавим уникальный id
-      localStorage.setItem('userKey', `${userIdKey.toFixed()}`);
+      localStorage.setItem('userKey', `${userIdKey.toFixed(0)}`);
     } else {
       loadTwo.innerHTML = 'No';
     }
@@ -361,7 +364,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //   const infoStorage = document.querySelector('.info-storage');
     
     
-
   // }
 
   // Выводим user agent 
@@ -429,17 +431,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // Получим ip
   let ipAddressUser;
 
-  getIp();
+  // getIp();
 
   function getIp() {
     const ip = document.querySelector('.ip');
     
-    fetch('https://api.ipify.org')
-      .then(response => response.text())
-      .then( function(json) {
-        ipAddressUser = json;
-        ip.innerHTML = ipAddressUser;
-      })
+    // fetch('https://api.ipify.org')
+    //   .then(response => response.text())
+    //   .then( function(json) {
+    //     ipAddressUser = json;
+    //     ip.innerHTML = ipAddressUser;
+    //   })
 
       setTimeout(() => {
 
@@ -493,6 +495,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, 10000);  
   }
+
+  // Составим портрет пользователя
+
 
   
 

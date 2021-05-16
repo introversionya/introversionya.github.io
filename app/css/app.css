@@ -415,9 +415,9 @@ html {
   min-height: 65px;
   background: #5f9ea0;
   border-bottom: 1px solid #4a4a4a;
-  -webkit-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s
+  -webkit-transition: all 1.5s;
+  -o-transition: all 1.5s;
+  transition: all 1.5s
 }
 .header--fixed {
   position: fixed;
@@ -426,6 +426,14 @@ html {
   width: 100%;
   background: #448283;
   border-bottom: 1px solid #000
+}
+.header--fixed .logo {
+  width: 40px;
+  height: 40px
+}
+.header--fixed .socials a svg {
+  width: 25px;
+  height: 25px
 }
 .header__inner {
   position: relative;
@@ -447,6 +455,7 @@ html {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   width: 45px;
+  height: 45px;
   position: relative;
   -webkit-transition: all .5s;
   -o-transition: all .5s;
@@ -493,7 +502,10 @@ html {
 .socials {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center
 }
 .socials a {
   margin-right: 25px;
@@ -804,6 +816,7 @@ html {
   border: 1px solid #f08080
 }
 .resize {
+  z-index: 20;
   opacity: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
