@@ -486,11 +486,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, 10000);  
   }
-  
-
-  // uniqueId
-  let uniqueId;
-  // console.log(uniqueId);
 
   
 
