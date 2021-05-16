@@ -427,10 +427,6 @@ html {
   background: #448283;
   border-bottom: 1px solid #000
 }
-.header--fixed .logo {
-  width: 40px;
-  height: 40px
-}
 .header--fixed .socials a svg {
   width: 25px;
   height: 25px
@@ -505,7 +501,11 @@ html {
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 305px
 }
 .socials a {
   margin-right: 25px;
@@ -519,7 +519,10 @@ html {
   display: -ms-flexbox;
   display: flex;
   width: 30px;
-  height: 30px
+  height: 30px;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s
 }
 .socials svg:hover path {
   -webkit-transition: all linear .3s;

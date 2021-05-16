@@ -436,12 +436,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function getIp() {
     const ip = document.querySelector('.ip');
     
-    // fetch('https://api.ipify.org')
-    //   .then(response => response.text())
-    //   .then( function(json) {
-    //     ipAddressUser = json;
-    //     ip.innerHTML = ipAddressUser;
-    //   })
+    fetch('https://api.ipify.org')
+      .then(response => response.text())
+      .then( function(json) {
+        ipAddressUser = json;
+        ip.innerHTML = ipAddressUser;
+      })
 
       setTimeout(() => {
 

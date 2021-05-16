@@ -54,10 +54,6 @@
   width: 100%;
   background: rgb(68, 130, 131);
   border-bottom: 1px solid #000;
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
   .socials a svg {
     width: 25px;
     height: 25px;
@@ -111,6 +107,8 @@
 .socials {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 305px;
   a {
     margin-right: 25px;
     text-decoration: none;
@@ -121,6 +119,7 @@
         display: flex;
         width: 30px;
         height: 30px;
+        transition: all .3s;
       }
   }
 }
