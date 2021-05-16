@@ -299,9 +299,6 @@ document.addEventListener("DOMContentLoaded", function () {
     btnInfo.addEventListener('click', function() {
       blockInfo.classList.toggle('btn--info-active');
       document.getElementsByTagName('body')[0].style.overflow = 'auto';
-      setTimeout(() => {
-        blockInfo.style.display = 'none';
-      }, 1000);
     })
 
     btnOpen.addEventListener('click', function() {
@@ -313,6 +310,22 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
   }
+
+  // Составим портрет пользователя
+  let userProfile = null;
+
+  function profile() {
+    if ( localStorage.getItem('firstVisit') === 'yes' ) {
+      userProfile = {
+        message: 'ключи были присвоены при первой загрузке',
+        id: `${localStorage.getItem('userKey')}`,
+        ip: `${localStorage.getItem('currentUserIP')}`,
+        userAgent: `${localStorage.userAgent}`,
+      }
+      localStorage.setItem('profile', `${JSON.stringify(userProfile)}`);
+    } 
+  }
+  
   
   // Выводим информацию - первая или нет загрузка
   checkFirstLoad();
@@ -324,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Генерация уникального id
     let id = 10 * 15 * Math.random() * 10 / 2 + 47 * Math.random();
     let userIdKey = ((id.toFixed(0) * id.toFixed(0)) * (id.toFixed(0) * id.toFixed(0))) * ((id.toFixed(0) * id.toFixed(0)) * (id.toFixed(0) * id.toFixed(0))) / 1000000000;
-    console.log('userIdKey ' + userIdKey.toFixed(0));
+    // console.log('userIdKey ' + userIdKey.toFixed(0));
 
     if ( localStorage.getItem('firstVisit') === 'yes' ) {
       loadTwo.innerHTML = 'Yes';
@@ -391,6 +404,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     idBrowser.style.cursor = 'pointer';
     idBrowser.setAttribute('title', `${userAgent}`);
+    localStorage.setItem('userAgent', `${userAgent}`);
   }
 
   // Выводим информацию о времени последней сессии
@@ -458,7 +472,8 @@ document.addEventListener("DOMContentLoaded", function () {
           ip.style.cursor = 'pointer';
           ip.setAttribute('title', 'api ipify');
         }
-
+        profile();
+        
       }, 5000);
 
   }
@@ -473,9 +488,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Сравним ip
   if ( localStorage.getItem('currentUserIP') !== null ) {
+    
     setTimeout(() => {
       if ( localStorage.getItem('currentUserIP') !== localStorage.getItem('lastUserIP') ) {
         console.log('Вы сменили ip?');
+        // console.log(userProfile);
         const ip = document.querySelector('.ip');
 
         let lastIpTemp = localStorage.getItem('lastUserIP');
@@ -493,11 +510,12 @@ document.addEventListener("DOMContentLoaded", function () {
         
 
       }
+      
     }, 10000);  
   }
+  
 
-  // Составим портрет пользователя
-
+  
 
   
 

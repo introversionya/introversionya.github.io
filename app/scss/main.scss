@@ -74,7 +74,6 @@
   cursor: pointer;
   transform-style: preserve-3d;
   width: 45px;
-  height: 45px;
   position: relative;
   transition: all .5s;
   &:hover {
@@ -479,7 +478,7 @@
 .btn--open {
   padding: 0;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   top: 100px;
   right: 20px;
   display: flex;
@@ -504,7 +503,7 @@
 }
 
 .btn--info-active {
-  right: -2000px;
+  transform: scale(0);
 }
 
 .btn--disclaimer {
