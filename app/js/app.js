@@ -417,13 +417,84 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }, 1000);
     
-  } // sessionTime() end
+  } 
+
+  // Получим ip
+  let ipAddressUser;
+
+  getIp();
+
+  function getIp() {
+    const ip = document.querySelector('.ip');
+    
+    fetch('https://api.ipify.org')
+      .then(response => response.text())
+      .then( function(json) {
+        ipAddressUser = json;
+        ip.innerHTML = ipAddressUser;
+      })
+
+      setTimeout(() => {
+
+        // запишем ip в хранилище
+        if (ipAddressUser !== undefined) {
+          localStorage.setItem('currentUserIP', `${ipAddressUser}`);
+        }  
+
+        if (ip.textContent !== ipAddressUser) {
+          ip.innerHTML = 'Не удалось получить IP';
+          ip.style.cursor = 'pointer';
+          ip.setAttribute('title', 'Для корректной работы выключите адблок');
+        } else {
+          ip.style.cursor = 'pointer';
+          ip.setAttribute('title', 'api ipify');
+        }
+
+      }, 5000);
+
+  }
+
+  // Запишем в хранилище ключ = последнему ip
+  if ( localStorage.getItem('currentUserIP') === null ) {
+    // console.log('null');
+  } else {
+    let last = localStorage.getItem('currentUserIP');
+    localStorage.setItem('lastUserIP', `${last}`);
+  }
+
+  // Сравним ip
+  if ( localStorage.getItem('currentUserIP') !== null ) {
+    setTimeout(() => {
+      if ( localStorage.getItem('currentUserIP') !== localStorage.getItem('lastUserIP') ) {
+        console.log('Вы сменили ip?');
+        const ip = document.querySelector('.ip');
+
+        let lastIpTemp = localStorage.getItem('lastUserIP');
+
+        const template = `
+        <button title="Текущий ip не совпадает с тем, что был в последний раз: ${lastIpTemp} " style="
+        margin-left: 5px;
+        color: blue;
+        background-color: transparent;
+        border: 1px solid;
+        cursor: pointer;
+      ">i</button>`
+
+        ip.innerHTML = `${localStorage.getItem('currentUserIP')}` + template;
+        
+
+      }
+    }, 10000);  
+  }
+  
+
+  // uniqueId
+  let uniqueId;
+  // console.log(uniqueId);
 
   
-  
 
-
-
+ 
 
 
 
