@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.onscroll = function () {
     showActiveSection(); // переключаем контролы
     checkHeadHeight(); // Закрепленный header
+    onScroll(); // Рисует стрелки вверх/вниз
   };
 
   // Получаем элемент по которому кликнули
@@ -45,8 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Темная тема
   const toggleBtn = document.querySelector(".btn-toggleTheme");
   // const linkThemes = document.querySelector('#link-themes');
-
-  function checkStatusTheme() {
+  toggleBtn.onclick =  function checkStatusTheme() {
     // Меняем значение title, цвет кнопки и css стили
     if (toggleBtn.getAttribute("title") === "Включить темный режим") {
       toggleBtn.setAttribute("title", "Включить светлый режим");
@@ -57,11 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleBtn.classList.add("light-theme");
     }
   }
-
-  // Запускаем функцию при клике
-  toggleBtn.addEventListener("click", function () {
-    checkStatusTheme();
-  });
 
   // Проверка на адблок
   const adblockBox = document.querySelector(".adblock-box");
@@ -167,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Переключение секций (controls)
+  // Создаем и отрисовываем темплайт => (controls)
   controlsBtnCount();
 
   function controlsBtnCount() {
@@ -195,30 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // controls показывает активную секцию
-  // function showActiveSection() {
-
-  //   // let blockPosition = document.querySelector('section').offsetTop, // Расстояние элемента по отношению к верхней части
-  //   //     windowScrollPosition = blockPosition.scrollTop;
-  //   //     console.log(document);
-
-  //   // if( blockPosition < windowScrollPosition ) {
-  //   //   // console.log('1');
-  //   // } else {
-  //   //   // console.log('2');
-  //   // }
-  // }
-
-  // Скролл сразу на след. секцию
-  window.addEventListener("scroll", function (event) {
-    let top = window.pageYOffset; // Позиция скролла
-    let displayHeight = document.documentElement.clientHeight; // Определим высоту экрана монитора
-    let displayWidth = document.documentElement.clientWidth; // Определим ширину экрана монитора
-
-    onScroll();
-    // showActiveSection();
-  });
-
   // Определим направление скролла и покажем направление стрелкой
   let scroll = 0;
 
@@ -241,22 +212,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 500);
     }
     scroll = top;
-  }
-
-  // Скролл вверх
-  function scrollUp(event) {
-    window.scrollTo({
-      top: -200,
-      behavior: "smooth",
-    });
-  }
-
-  // Скролл вниз
-  function scrollDown(event) {
-    window.scrollTo({
-      top: 200,
-      behavior: "smooth",
-    });
   }
 
   // При ресайзе показывать px
@@ -323,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function checkFirstLoad() {
     let loadTwo = document.querySelector(".first-load");
 
-    // Генерация уникального id
+    // Генерация уникального id пользователя
     let id = (10 * 15 * Math.random() * 10) / 2 + 47 * Math.random();
     let userIdKey =
       (id.toFixed(0) *
@@ -335,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (localStorage.getItem("firstVisit") === "yes") {
       loadTwo.innerHTML = "Yes";
-      // Добавим уникальный id
+      // Добавим уникальный id в хранилище
       localStorage.setItem("userKey", `${userIdKey.toFixed(0)}`);
     } else {
       loadTwo.innerHTML = "No";
@@ -499,9 +454,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 10000);
   }
 
+  // При скролле переключаем контролы
+  showActiveSection();
+
+  function showActiveSection() {
+    // Элемент в зоне видимости => elementFromPoint(x, y)   "y" => вертикаль
+
+    let pozY = document.documentElement.clientHeight / 2; // target на центре экрана
+    let pozX = document.documentElement.clientWidth / 2; // target на центре экрана
+
+    let item = document.elementFromPoint(pozX, pozY); // Элемент в зоне видимости
+
+    // control показывает активную секцию
+    let controlBtn = document.querySelectorAll(".controls__btn");
+    controlBtn.forEach(function (el, i, arr) {
+      let controlBtnClass = el.className;
+      let itemClass = item.className;
+
+      document.querySelectorAll(".controls__btn").forEach(function (el, index) {
+        let controlBtnTooltip = el.getAttribute("tooltip"); // текст тултипса
+
+        if (itemClass === controlBtnTooltip) {
+          el.classList.add("controls__btn--active");
+        } else {
+          el.classList.remove("controls__btn--active");
+        }
+      });
+    });
+  }
+
+
   // console.log('Высота экрана:', clientHeight - 65);
   // console.log('Пикселей от верха:', window.pageYOffset + 65);
   // console.log( window.pageYOffset >= (clientHeight - 65) ); // =>если true, значит скролл = секции
+  // console.log(window.pageYOffset); // Пикселей от верха
+  // console.log(screenSizeWidth, screenSizeHeight); // Реальный размер экрана => 1366 768
+  // console.log(clientWidth, clientHeight); // Реальный размер экрана браузера (=> тому, что в зоне видимости)
+  // console.log(document.body.clientHeight); // реальная высота/ширина страницы
 
   let screenSizeWidth;
   let screenSizeHeight;
@@ -511,16 +500,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let realHeight;
   let temp;
 
-  // console.log(window.pageYOffset); // Пикселей от верха
-  // console.log(screenSizeWidth, screenSizeHeight); // Реальный размер экрана => 1366 768
-  // console.log(clientWidth, clientHeight); // Реальный размер экрана браузера (=> тому, что в зоне видимости)
-  // console.log(document.body.clientHeight); // реальная высота/ширина страницы
-
   document
     .querySelector(".controls__btn")
     .addEventListener("click", function (event) {
       console.log("0");
-      test();
+     
       //----------------------------------------
       screenSizeWidth = window.screen.width;
       screenSizeHeight = window.screen.height;
@@ -553,45 +537,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // console.log('шаг после сброса', step);
       }
     });
-
-  // function test() {
-  //   window.scrollBy ({
-  //     top: -temp, // temp === высоте секции
-  //     left: 0,
-  //     behavior: 'smooth'
-  //   })
-  // }
-
-  // При скролле переключаем контролы
-  showActiveSection();
-
-  function showActiveSection() {
-    // Элемент в зоне видимости
-    // ------elementFromPoint(x, y)   "y" => вертикаль
-
-    let pozY = document.documentElement.clientHeight / 2; // target на центре экрана
-    let pozX = document.documentElement.clientWidth / 2; // target на центре экрана
-
-    let item = document.elementFromPoint(pozX, pozY); // Элемент в зоне видимости
-
-    // control показывает активную секцию
-    let controlBtn = document.querySelectorAll(".controls__btn");
-    controlBtn.forEach(function (el, i, arr) {
-      let controlBtnClass = el.className;
-      let itemClass = item.className;
-
-      document.querySelectorAll(".controls__btn").forEach(function (el, index) {
-        let controlBtnTooltip = el.getAttribute("tooltip"); // текст толтипса
-
-        // имя класса в зоне видимости : toppltip.text
-        if (itemClass === controlBtnTooltip) {
-          el.classList.add("controls__btn--active");
-        } else {
-          el.classList.remove("controls__btn--active");
-        }
-      });
-    });
-  }
 
 
 }); // DOMContentLoaded
