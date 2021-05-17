@@ -800,20 +800,50 @@ html {
   border: 2px solid transparent;
   border-radius: 50%;
   margin-bottom: 10px;
-  -webkit-transition: all .3s;
-  -o-transition: all .3s;
-  transition: all .3s
+  font-size: 18px;
+  -webkit-transition: all 1.3s;
+  -o-transition: all 1.3s;
+  transition: all 1.3s
 }
 .controls__btn:last-child {
   margin-bottom: 0
 }
 .controls__btn:hover {
-  color: #f08080
+  -webkit-transition: all 1.3s;
+  -o-transition: all 1.3s;
+  transition: all 1.3s;
+  color: #f08080;
+  border: 2px solid #f08080
+}
+.controls__btn:hover .controls__btn-count {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0)
+}
+.controls__btn-count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform: translateX(-50px);
+  -ms-transform: translateX(-50px);
+  transform: translateX(-50px);
+  -webkit-transition: all 1.3s;
+  -o-transition: all 1.3s;
+  transition: all 1.3s
 }
 .controls__btn--active {
-  background-color: gray;
+  -webkit-transition: all 1.3s;
+  -o-transition: all 1.3s;
+  transition: all 1.3s;
+  cursor: default;
+  background-color: #370653;
   border: 2px solid #f08080;
   color: #f08080
+}
+.controls__btn--active .controls__btn-count {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0)
 }
 .resize {
   z-index: 20;

@@ -324,19 +324,36 @@
   border: 2px solid transparent;
   border-radius: 50%;
   margin-bottom: 10px;
-  transition: all .3s;
+  font-size: 18px;
+  transition: all 1.3s;
   &:last-child {
     margin-bottom: 0;
   }
   &:hover {
+    transition: all 1.3s;
     color: lightcoral;
+    border: 2px solid lightcoral;
+    .controls__btn-count {
+      transform: translateX(0);
+    }
   }
 }
 
+.controls__btn-count {
+  display: flex;
+  transform: translateX(-50px);
+  transition: all 1.3s;
+}
+
 .controls__btn--active {
-  background-color: gray;
+  transition: all 1.3s;
+  cursor: default;
+  background-color: #370653;
   border: 2px solid lightcoral;
   color: lightcoral;
+  .controls__btn-count {
+    transform: translateX(0);
+  }
 }
 
 .resize {

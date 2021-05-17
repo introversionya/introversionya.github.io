@@ -172,9 +172,9 @@ document.addEventListener("DOMContentLoaded", function () {
     filterSection.forEach(function (el, index, arr) {
       let getSectionClass = el.attributes[0].value;
       controls.innerHTML += `
-      <button class="controls__btn" tooltip="${getSectionClass}" tooltip-position="right">${
-        index + 1
-      }</button>
+      <button class="controls__btn" tooltip="${getSectionClass}" tooltip-position="right"><span class="controls__btn-count">${
+        index + 1}</span>
+      </button>
     `;
     });
   }
