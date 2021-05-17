@@ -797,7 +797,7 @@ html {
   width: 25px;
   height: 25px;
   cursor: pointer;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 50%;
   margin-bottom: 10px;
   -webkit-transition: all .3s;
@@ -812,10 +812,8 @@ html {
 }
 .controls__btn--active {
   background-color: gray;
-  border: 1px solid #fff
-}
-.controls__btn--active:hover {
-  border: 1px solid #f08080
+  border: 2px solid #f08080;
+  color: #f08080
 }
 .resize {
   z-index: 20;

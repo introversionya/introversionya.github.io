@@ -321,7 +321,7 @@
   width: 25px;
   height: 25px;
   cursor: pointer;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 50%;
   margin-bottom: 10px;
   transition: all .3s;
@@ -335,10 +335,8 @@
 
 .controls__btn--active {
   background-color: gray;
-  border: 1px solid #fff;
-  &:hover {
-    border: 1px solid lightcoral;
-  }
+  border: 2px solid lightcoral;
+  color: lightcoral;
 }
 
 .resize {
