@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sectionAll = document.querySelectorAll("section");
 
     for (let i = 0; i < sectionAll.length; i++) {
-      sectionAll[i].id = `${"Anchor-" + (i + 1)}`;
+      sectionAll[i].id = `${sectionAll[i].className}`;
     }
   }
 
@@ -467,6 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // control показывает активную секцию
     let controlBtn = document.querySelectorAll(".controls__btn");
+
     controlBtn.forEach(function (el, i, arr) {
       let controlBtnClass = el.className;
       let itemClass = item.className;
@@ -483,6 +484,58 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Клик по контролу скроллит на нужную секцию
+  controlClickToSection();
+
+  function controlClickToSection() {
+    let idSection;
+    let controlTextTooltip;
+    let targetCoordinates; // сюда будем перемещаться при клике 
+
+    document.querySelectorAll('.controls__btn').forEach(function(el, i){
+      
+      el.addEventListener('click' , function(){
+        controlTextTooltip = el.getAttribute('tooltip'); // текст тултипов
+        // console.log('textTooltip: ' + controlTextTooltip);
+        // Получим позицию секции при клике на control и запишем ее в targetCoordinates
+            document.querySelectorAll('section').forEach(function(sct, idx){
+              idSection = sct.id;
+              // console.log(idSection);
+              if (controlTextTooltip === idSection) {
+                idSection = sct.offsetTop; // Позиция нужной секции
+                targetCoordinates = idSection - 65;
+                if (window.pageYOffset >= 65) { // из-за перестройки шапки меняются размеры - исправим это
+                  targetCoordinates = targetCoordinates + 65;
+                }
+                console.log(targetCoordinates);
+                controlScroll();
+              }
+            })
+      })
+      
+    })
+
+    // Запускается при клике
+    function controlScroll() {
+      scrollTo({
+        top: targetCoordinates - 65,
+        left: 0,
+        behavior: 'smooth'
+      })
+    }
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   // console.log('Высота экрана:', clientHeight - 65);
   // console.log('Пикселей от верха:', window.pageYOffset + 65);
@@ -492,51 +545,51 @@ document.addEventListener("DOMContentLoaded", function () {
   // console.log(clientWidth, clientHeight); // Реальный размер экрана браузера (=> тому, что в зоне видимости)
   // console.log(document.body.clientHeight); // реальная высота/ширина страницы
 
-  let screenSizeWidth;
-  let screenSizeHeight;
+  // let screenSizeWidth;
+  // let screenSizeHeight;
 
-  let clientWidth;
-  let clientHeight;
-  let realHeight;
-  let temp;
+  // let clientWidth;
+  // let clientHeight;
+  // let realHeight;
+  // let temp;
 
-  document
-    .querySelector(".controls__btn")
-    .addEventListener("click", function (event) {
-      console.log("0");
+  // document
+  //   .querySelector(".controls__btn")
+  //   .addEventListener("click", function (event) {
+  //     console.log("0");
      
-      //----------------------------------------
-      screenSizeWidth = window.screen.width;
-      screenSizeHeight = window.screen.height;
+  //     //----------------------------------------
+  //     screenSizeWidth = window.screen.width;
+  //     screenSizeHeight = window.screen.height;
 
-      clientWidth = document.documentElement.clientWidth;
-      clientHeight = document.documentElement.clientHeight;
-      realHeight = document.body.clientHeight - 65;
-      let sectionCount; // Сколько всего секций
-      //----------------------------------------
+  //     clientWidth = document.documentElement.clientWidth;
+  //     clientHeight = document.documentElement.clientHeight;
+  //     realHeight = document.body.clientHeight - 65;
+  //     let sectionCount; // Сколько всего секций
+  //     //----------------------------------------
 
-      // сколько всего секций:
-      document
-        .querySelectorAll(".main > section")
-        .forEach(function (el, index, arr) {
-          sectionCount = index + 1; // => 7 секций
-        });
-      temp = realHeight / sectionCount; // Высоту одной секции
+  //     // сколько всего секций:
+  //     document
+  //       .querySelectorAll(".main > section")
+  //       .forEach(function (el, index, arr) {
+  //         sectionCount = index + 1; // => 7 секций
+  //       });
+  //     temp = realHeight / sectionCount; // Высоту одной секции
 
-      let step = 0; // шаг = высоте секции
-      step = step + window.pageYOffset;
+  //     let step = 0; // шаг = высоте секции
+  //     step = step + window.pageYOffset;
 
-      if (step >= clientHeight - 65) {
-        step = 0;
-        // console.log('Обнулим шаг');
-        console.log("шаг", step);
-      }
+  //     if (step >= clientHeight - 65) {
+  //       step = 0;
+  //       // console.log('Обнулим шаг');
+  //       console.log("шаг", step);
+  //     }
 
-      if (step === 0) {
-        step = step + window.pageYOffset;
-        // console.log('шаг после сброса', step);
-      }
-    });
+  //     if (step === 0) {
+  //       step = step + window.pageYOffset;
+  //       // console.log('шаг после сброса', step);
+  //     }
+  //   });
 
 
 }); // DOMContentLoaded
