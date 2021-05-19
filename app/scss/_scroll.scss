@@ -38,7 +38,7 @@
 }
 
 .scroll-up:hover {
-  color: orange;
+  color: rgb(0, 174, 255);
 }
 
 .scroll-up--active {
@@ -52,7 +52,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   fill: none;
-  stroke: orange;
+  stroke: rgb(0, 174, 255);
   stroke-width: 4px;
   -webkit-transition: .2s;
   transition: .2s;
