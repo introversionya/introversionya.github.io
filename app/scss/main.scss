@@ -1,0 +1,80 @@
+// ==================================================
+// Подключаем normalize https://github.com/necolas/normalize.css
+@import "normalize";
+
+// Подключаем общие стили для всего проекта
+@import "config";
+
+// Подключаем контейнер
+@import "container";
+
+// Подключаем шрифты
+@import "fonts";
+
+// Подключаем переменные
+@import "variables";
+
+// Подключаем стили для скролл бара
+@import "scrollbar";
+
+// Подключаем tooltips
+@import "tooltips";
+
+// Header
+@import "header";
+
+// Секция about
+@import "about";
+
+// Блок resize
+@import "resize";
+
+// Блок arrow
+@import "arrow";
+
+// Блок loader
+@import "loader";
+
+// Блок btn-scroll
+@import "btn-scroll";
+// ==================================================
+
+// Main scss код:
+body {
+  background-color: #1a1e22;
+  color: #c4cbd3;
+  font-family: "Univia Pro", "Univia Pro Ultra", "Univia Pro Book";
+  font-size: 14px;
+  height: 10001px;
+}
+
+// section {
+//   width: 100%;
+//   background-image: url(/images/general/background.png);
+//   background-repeat: repeat;
+//   background-size: cover;
+// }
+
+.layers {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2000;
+}
+
+.hide-adb {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 150px;
+  left: 0;
+  width: 130px;
+  height: 130px;
+}
+
+.scroll-hidden {
+  overflow: hidden;
+}
