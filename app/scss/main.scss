@@ -1,50 +1,49 @@
 // ==================================================
 // Подключаем normalize https://github.com/necolas/normalize.css
-@import "normalize";
+@import "./components/normalize";
 
 // Подключаем общие стили для всего проекта
-@import "config";
-
-// Подключаем контейнер
-@import "container";
+@import "./components/config";
 
 // Подключаем шрифты
-@import "fonts";
+@import "./components/fonts";
 
 // Подключаем переменные
-@import "variables";
+@import "./components/variables";
 
 // Подключаем стили для скролл бара
-@import "scrollbar";
+@import "./components/scrollbar";
 
-// Подключаем tooltips
-@import "tooltips";
-
-// Header
-@import "header";
-
-// Секция about
-@import "about";
-
-// Блок resize
-@import "resize";
-
-// Блок arrow
-@import "arrow";
+// Подключаем контейнер
+@import "./components/container";
 
 // Блок loader
-@import "loader";
+@import "./components/loader";
 
-// Блок btn-scroll
-@import "btn-scroll";
+// Header
+@import "./components/header";
+
+// Подключаем tooltips
+@import "./components/tooltips";
+
+// Блок screen-size
+@import "./components/screen-size";
+
+// Блок navigation-btns
+@import "./components/navigation-btns";
+
+// Секция about
+@import "./components/about";
 // ==================================================
 
 // Main scss код:
 body {
-  background-color: #1a1e22;
-  color: #c4cbd3;
-  font-family: "Univia Pro", "Univia Pro Ultra", "Univia Pro Book";
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 14px;
+  background-color: #1a1e22;
+  color: #d3c4c4;
   height: 10001px;
 }
 
@@ -77,4 +76,8 @@ body {
 
 .scroll-hidden {
   overflow: hidden;
+}
+
+.block-hidden {
+  visibility: hidden;
 }

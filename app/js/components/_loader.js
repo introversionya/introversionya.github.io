@@ -1,16 +1,17 @@
 import * as variable from "./_variables.js";
 
-// Удаляем загрузчик
-loader();
-
-export function loader() {
-  window.addEventListener("load", () => {
-    variable.loader.classList.add("loader--animate");
-    variable.loader.addEventListener("animationend", closeLoader);
-  });
-}
+window.addEventListener("load", closeLoader);
 
 function closeLoader() {
-  variable.body.classList.remove("scroll-hidden");
-  variable.loader.style.display = "none";
+  setTimeout(() => {
+    variable.loader.classList.add("block-hidden");
+    variable.wrapBtnScroll.classList.remove("block-hidden");
+    variable.screen.classList.remove("block-hidden");
+    variable.header.classList.remove("block-hidden");
+    variable.main.classList.remove("block-hidden");
+    variable.footer.classList.remove("block-hidden");
+    variable.body.classList.remove("scroll-hidden");
+
+    window.removeEventListener("load", closeLoader);
+  }, 300);
 }

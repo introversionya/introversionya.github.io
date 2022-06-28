@@ -1,10 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 -25 150 150"><style>svg {
+      will-change: transform;
       stroke: #000000;
       stroke-width: 0.8px;
       fill: #9575b5;
     }
 
     .gear-one {
+      will-change: inherit;
       -webkit-transform-origin: 33.505px 67.195px 0;
       -ms-transform-origin: 33.505px 67.195px 0;
       transform-origin: 33.505px 67.195px 0;
@@ -13,6 +15,7 @@
     }
 
     .gear-two {
+      will-change: inherit;
       -webkit-transform-origin: 69.35px 29.93px 0;
       -ms-transform-origin: 69.35px 29.93px 0;
       transform-origin: 69.35px 29.93px 0;

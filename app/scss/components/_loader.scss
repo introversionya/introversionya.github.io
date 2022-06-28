@@ -1,0 +1,50 @@
+.loader {
+  user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  opacity: .8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2500;
+  &__title {
+    position: relative;
+    display: flex;
+    text-transform: lowercase;
+    margin-bottom: 15px;
+  }
+  &__title::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    right: -100%;
+    animation: progress-ellipsis 1s linear infinite;
+  }
+  &__spinner {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+// анимация многоточия
+@keyframes progress-ellipsis {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}

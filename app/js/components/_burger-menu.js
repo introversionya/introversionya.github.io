@@ -1,7 +1,6 @@
 import * as variable from "./_variables.js";
 
-// бургер-меню
-variable.body.addEventListener("click", openBurgerMenu);
+variable.html.addEventListener("click", openBurgerMenu);
 
 function openBurgerMenu(e) {
   if (e.target.closest(".burger-btn")) {

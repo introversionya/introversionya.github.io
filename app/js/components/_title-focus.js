@@ -1,29 +1,29 @@
 import * as variable from "./_variables.js";
 
-// Включить таймер когда вкладка не в фокусе
 let hours = "00",
   minutes = "00",
-  seconds = "00";
-let timer = null;
+  seconds = "00",
+  timer = null;
 
-isFocusTitle();
+stateTab();
 
-export function isFocusTitle() {
+function stateTab() {
+  if (document.visibilityState === "hidden") {
+    variable.title.textContent = "Сайт загрузился в фоновом режиме...";
+  }
+
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
-      variable.title.textContent = variable.mainTitle;
       clearInterval(timer);
+      timer = null;
       hours = "00";
       minutes = "00";
       seconds = "00";
+      variable.title.textContent = variable.mainTitle;
     } else {
       timerOnTab();
     }
   });
-}
-
-if (document.visibilityState === "hidden") {
-  variable.title.textContent = "Сайт загрузился в фоновом режиме...";
 }
 
 function timerOnTab() {
@@ -52,12 +52,12 @@ function timerOnTab() {
       }
     }
 
-    variable.title.textContent =
-      "Отсутствие: " + hours + "h : " + minutes + "m : " + seconds + "s";
+    variable.title.textContent = "Отсутствие: " + hours + "h : " + minutes + "m : " + seconds + "s";
 
     if (hours >= 24) {
-      variable.title.textContent = "Отсутствие: больше 24h";
       clearInterval(timer);
+      timer = null;
+      variable.title.textContent = "Отсутствие: больше 24h";
     }
   }, 1000);
 }

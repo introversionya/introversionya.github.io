@@ -1,0 +1,249 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  background-color: #212a33;
+  color: #bfbfbf;
+  z-index: 1000;
+}
+
+.header__bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: #727272;
+  pointer-events: none;
+  will-change: width;
+  transition: width linear .1s;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #bfbfbf;
+  transition: border linear .1s;
+  &:hover {
+    border: 2px solid #475d72;
+  }
+}
+
+// .header__nav {
+//   margin: 0 50px;
+// }
+
+.header__ul {
+  display: flex;
+  padding-left: 0;
+}
+
+.header__item {
+  position: relative;
+  will-change: width;
+  transition: width linear .1s;
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    bottom: -7px;
+    right: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #686bb3;
+    will-change: inherit;
+    transition: inherit;
+  }
+  &:hover::before {
+    width: 50%;
+  }
+  &::after {
+    position: absolute;
+    content: "";
+    bottom: -7px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #475d72;
+    will-change: inherit;
+    transition: inherit;
+  }
+  &:hover::after {
+    width: 50%;
+  }
+  a {
+    font-style: italic;
+    color: #c4cbd3;
+    will-change: color;
+    transition: color linear .1s;
+    &:hover {
+      color: honeydew;
+    }
+  }
+}
+
+.header__item--active {
+  &::before {
+    width: 50%;
+  }
+  &::after {
+    width: 50%;
+  }
+  a {
+    cursor: default;
+    color: honeydew;
+  }
+}
+
+// ----------------------------------------------------------------------
+.theme-toggle {
+  padding: 5px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #475d72;
+  border-radius: 12px;
+
+  &__dark:hover,
+  &__btn:hover,
+  &__light:hover {
+    color: #686bb3;
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  &__btn {
+    cursor: pointer;
+    border: none;
+    color: #475d72;
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      transition: all linear 0.2s;
+    }
+  }
+
+  &__auto {
+    margin: 0 10px;
+    transition: all linear 0.2s;
+  }
+
+  &__btn--active {
+    color: #686bb3;
+    svg {
+      fill: currentColor;
+    }
+  }
+}
+// ----------------------------------------------------------------------
+
+.burger-btn {
+  position: relative;
+  padding: 0;
+  border: none;
+  width: 25px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  background-color: transparent;
+
+  will-change: top, right, bottom, left, transform;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: #c4cbd3;
+    will-change: top, right, bottom, left, transform;
+    transition: all ease-in 0.1s;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+  }
+  &::after {
+    bottom: 0;
+    right: 0;
+  }
+
+  &__line {
+    position: relative;
+    display: block;
+    background-color: #c4cbd3;
+    width: 100%;
+    height: 2px;
+    will-change: top, right, bottom, left, transform;
+    transition: all ease-in 0.1s;
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:hover &__line {
+    background-color: honeydew;
+  }
+
+  &--open &__line {
+    transform: scale(0);
+  }
+
+  &--open {
+    animation: burger-spinner ease-in 0.1s forwards;
+  }
+  &--open::before {
+    animation: burger-top linear 0.1s forwards;
+  }
+  &--open::after {
+    animation: burger-bottom linear 0.1s forwards;
+  }
+}
+
+@keyframes burger-top {
+  0% {
+    top: calc(50% - 1px);
+  }
+  100% {
+    top: calc(50% - 1px);
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes burger-bottom {
+  0% {
+    bottom: calc(50% - 1px);
+  }
+  100% {
+    bottom: calc(50% - 1px);
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes burger-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}

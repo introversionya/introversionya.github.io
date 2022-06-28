@@ -1,23 +1,34 @@
 import * as variable from "./_variables.js";
 
-// Проверка наличия адблок
+const res = {};
+const links = ["https://ads.adfox.ru", "https://vak345.com", "http://flashnetic.com", "https://aj1907.online"];
+
 checkAdb();
 
-export function checkAdb() {
-  const adbEl = document.createElement("div");
-  variable.body.append(adbEl);
-  adbEl.textContent = "REKLAMA, AD, ADV, РЕКЛАМА";
-  adbEl.classList.add("adb-box", "reklama", "hide-adb", "ad", "adv");
-  const adbBox = document.querySelector(".adb-box");
-
-  setTimeout(() => {
-    if (adbBox.clientHeight === 0 || adbBox.offsetHeight === 0) {
-      variable.headerAdb.setAttribute("tooltip", "Обнаружен adblock!");
-      variable.headerAdbIcon.style.opacity = 1;
-      adbEl.remove();
-    } else {
-      variable.headerAdb.setAttribute("tooltip", "adblock не обнаружен");
-      adbEl.remove();
+async function checkAdb() {
+  for (let i = 0; i < links.length; i++) {
+    try {
+      await fetch(links[i], { mode: "no-cors" });
+      res[links[i]] = true;
+    } catch (error) {
+      res[links[i]] = false;
+    } finally {
+      testResult();
     }
-  }, 10000);
+  }
+}
+
+function testResult() {
+  const resLength = Object.keys(res).length; // Длина
+  const value = Object.values(res); // Значение
+  let blokedValue = 0; // Кол-во заблокированных запросов
+
+  value.forEach((el) => {
+    if (el === false) {
+      blokedValue++;
+    }
+  });
+
+  const tmp = (100 / resLength) * blokedValue; // вероятность адблока в %
+  variable.html.setAttribute("data-adblock-installed", `${tmp}%`);
 }
