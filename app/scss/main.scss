@@ -5,26 +5,29 @@
 // Подключаем общие стили для всего проекта
 @import "./components/config";
 
-// Подключаем шрифты
-@import "./components/fonts";
+// Подключаем контейнер
+@import "./components/container";
 
 // Подключаем переменные
 @import "./components/variables";
 
+// Подключаем шрифты
+@import "./components/fonts";
+
+// Подключаем noscript
+@import "./components/_noscript";
+
 // Подключаем стили для скролл бара
 @import "./components/scrollbar";
 
-// Подключаем контейнер
-@import "./components/container";
+// Подключаем tooltips
+@import "./components/tooltips";
 
 // Блок loader
 @import "./components/loader";
 
 // Header
 @import "./components/header";
-
-// Подключаем tooltips
-@import "./components/tooltips";
 
 // Блок screen-size
 @import "./components/screen-size";
