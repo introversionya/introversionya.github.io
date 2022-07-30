@@ -1,79 +1,37 @@
-// для tooltip нужно делать див обертку!
+.tooltip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  max-width: 300px;
 
-// tooltip
-[data-tooltip] {
-  position: relative;
-  user-select: none;
-  z-index: 1000;
-}
+  opacity: 0;
 
-// content
-[data-tooltip]::before {
   pointer-events: none;
   position: absolute;
-  content: attr(data-tooltip);
-  padding: 5px 10px;
+
+  padding: 5px 15px;
   border-radius: 14px;
   background-color: black;
-  color: #fff;
-  white-space: nowrap;
-  opacity: 0;
+  color: black;
   box-shadow: 0 0 0 2px rgba(34, 60, 80, 0.5);
-  transition: all linear 0.1s;
-}
+  z-index: 5000;
+  transition: all linear 0.2s;
 
-// top
-[data-tooltip-position="top"] {
-  &::before {
-    top: $tooltip-distance;
-    left: 50%;
-    transform: translate(-50%, -100%) scale(0.9);
-  }
-  &:hover::before,
-  &:focus::before {
+  &--animate {
     opacity: 1;
-    transform: translate(-50%, -100%) scale(1);
+    animation: tooltip-animate-visible linear 0.3s forwards;
   }
 }
 
-// bottom
-[data-tooltip-position="bottom"] {
-  &::before {
-    bottom: $tooltip-distance;
-    left: 50%;
-    transform: translate(-50%, 100%) scale(0.9);
+@keyframes tooltip-animate-visible {
+  0% {
+    transform: scale(0);
   }
-  &:hover::before,
-  &:focus::before {
-    opacity: 1;
-    transform: translate(-50%, 100%) scale(1);
+  50% {
+    transform: scale(1.2);
   }
-}
-
-// left
-[data-tooltip-position="left"] {
-  &::before {
-    left: $tooltip-distance;
-    top: 50%;
-    transform: translate(-100%, -50%) scale(0.9);
-  }
-  &:hover::before,
-  &:focus::before {
-    opacity: 1;
-    transform: translate(-100%, -50%) scale(1);
-  }
-}
-
-// right
-[data-tooltip-position="right"] {
-  &::before {
-    right: $tooltip-distance;
-    top: 50%;
-    transform: translate(100%, -50%) scale(0.9);
-  }
-  &:hover::before,
-  &:focus::before {
-    opacity: 1;
-    transform: translate(100%, -50%) scale(1);
+  100% {
+    transform: scale(1);
+    color: #fff;
   }
 }

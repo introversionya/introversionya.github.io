@@ -11,6 +11,7 @@ import "./components/_navigation-btns.js"; // Кнопки прокрутки в
 import "./components/_lazy-load.js"; // Ленивая загрузка
 import "./components/_screen-size.js"; // При ресайзе показывать ширину и высоту экрана
 import "./components/_user-ip.js"; // Получаем ip пользователя
+import "./components/_tooltips.js"; // tooltips
 // import "./components/_detect-adblock.js"; // Обнаружение адблок (подумать над логикой)
 
 // import "./components/_detect-platform.js";
