@@ -15,11 +15,11 @@
   color: black;
   box-shadow: 0 0 0 2px rgba(34, 60, 80, 0.5);
   z-index: 5000;
-  transition: all linear 0.2s;
+  transition: all linear .2s;
 
   &--animate {
     opacity: 1;
-    animation: tooltip-animate-visible linear 0.3s forwards;
+    animation: tooltip-animate-visible linear .3s forwards;
   }
 }
 
