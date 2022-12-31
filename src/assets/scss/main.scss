@@ -1,0 +1,96 @@
+// Подключаем normalize https://github.com/necolas/normalize.css
+@import "./components/normalize";
+
+// Подключаем общие стили для всего проекта
+@import "./components/config";
+
+// Подключаем контейнер
+@import "./components/container";
+
+// Подключаем стили для скролла
+// @import "./components/scrollbar";
+
+// Подключаем переменные
+@import "./components/variables";
+
+// Подключение цветовой схемы
+@import "./components/color-scheme";
+
+// Подключаем шрифты
+@import "./components/fonts";
+
+// Блок loader
+// @import "./components/loader";
+
+// Подключаем noscript
+// @import "./components/_noscript";
+
+// Header
+// @import "./components/header";
+
+// Подключаем tooltips
+@import "./components/tooltips";
+
+// Блок screen-size
+// @import "./components/screen-size";
+
+// Блок navigation-btns
+// @import "./components/navigation-btns";
+
+// main scss код:
+body {
+  overflow-x: hidden;
+  font-family: var(--main-font);
+  font-weight: 500;
+  font-style: normal;
+  font-size: 13px;
+  height: 10001px;
+
+  background-color: var(--body-bg);
+  color: var(--body-color);
+}
+
+// .loading *:not(.loader, .loader *, noscript, noscript *, .warning-js, .warning-js *) {
+//   visibility: hidden;
+// }
+
+.main-hover {
+  will-change: transform;
+  position: relative;
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    bottom: var(--main-hover-padding);
+    width: 0;
+    height: 2px;
+    transition: width linear 0.1s;
+  }
+  &::before {
+    right: 50%;
+    background-color: #686bb3;
+  }
+  &::after {
+    left: 50%;
+    background-color: #475d72;
+  }
+  &:hover::before,
+  &:hover::after {
+    width: 50%;
+  }
+}
+
+// section {
+//   width: 100%;
+//   background-image: url(/images/general/background.png);
+//   background-repeat: repeat;
+//   background-size: cover;
+// }
+
+// .scroll-hidden {
+//   overflow: hidden;
+// }
+
+// .block-hidden {
+//   visibility: hidden;
+// }
