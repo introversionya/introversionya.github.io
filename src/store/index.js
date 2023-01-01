@@ -1,8 +1,8 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    loader: true, // потом включить!
+    loader: false, // потом включить!
     userIp: null,
   },
   getters: {
@@ -24,5 +24,3 @@ export default createStore({
   actions: {},
   modules: {},
 });
-
-// готово

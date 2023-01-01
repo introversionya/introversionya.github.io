@@ -1,15 +1,3 @@
-<template>
-  <button
-    v-tooltip="{ indent: 10, text: 'Открыть меню', position: 'top', isActive: true }"
-    @click="btnClickHandler"
-    class="burger-btn"
-    :class="{ 'burger-btn--open': isOpen }"
-    aria-label="Открыть меню"
-  >
-    <span class="burger-btn__line"></span>
-  </button>
-</template>
-
 <script>
 export default {
   name: "AppHeaderBurger",
@@ -19,23 +7,33 @@ export default {
     };
   },
   methods: {
-    btnClickHandler() {
-      this.isOpen = !this.isOpen;
-      // if (e.target.closest(".burger-btn")) {
-      //   this.isOpen = !this.isOpen;
-      // } else {
-      //   this.isOpen = false;
-      // }
+    btnClickHandler(e) {
+      if (e.target.closest(".burger-btn")) {
+        this.isOpen = !this.isOpen;
+      } else {
+        this.isOpen = false;
+      }
     },
   },
-  // mounted() {
-  //   document.addEventListener("click", this.openBurger);
-  // },
-  // destroyed() {
-  //   document.removeEventListener("click", this.openBurger);
-  // }
+  mounted() {
+    document.addEventListener("click", this.btnClickHandler);
+  },
+  unmounted() {
+    document.removeEventListener("click", this.btnClickHandler);
+  }
 };
 </script>
+
+<template>
+  <button
+    v-tooltip="{ indent: 10, text: 'Открыть меню', position: 'top', isActive: true }"
+    class="burger-btn"
+    :class="{ 'burger-btn--open': isOpen }"
+    aria-label="Открыть меню"
+  >
+    <span class="burger-btn__line"></span>
+  </button>
+</template>
 
 <style lang="scss" scoped>
 .burger-btn {

@@ -1,6 +1,6 @@
 <template>
   <div class="loader">
-    <img src="@/assets/images/loaders/spinner.svg" alt="loader">
+    <img class="loader__spinner" src="@/assets/images/loaders/spinner.svg" alt="loader">
   </div>
 </template>
 
@@ -11,7 +11,8 @@
   height: 100vh;
   background-color: #000;
   z-index: 10000;
-  img {
+
+  &__spinner {
     position: absolute;
     width: 35px;
     top: 50%;

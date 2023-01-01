@@ -1,7 +1,26 @@
+<script>
+export default {
+  name: 'AppHeaderNav',
+  data() {
+    return {
+      links: [
+        { href: '#', description: 'Обо мне', isActive: true },
+        { href: '#', description: 'Навыки', isActive: false },
+        { href: '#', description: 'Мои работы', isActive: false },
+        { href: '#', description: 'Контакты', isActive: false },
+      ],
+    };
+  },
+};
+</script>
+
 <template>
   <nav class="header__nav">
     <ul class="header__ul">
-      <li class="header__li" v-for="link in links">
+      <li
+        class="header__li"
+        v-for="link in links"
+      >
         <router-link
           class="header__link main-hover"
           :class="{ 'header__link--active': link.isActive }"
@@ -13,22 +32,6 @@
     </ul>
   </nav>
 </template>
-
-<script>
-export default {
-  name: "AppHeaderNav",
-  data() {
-    return {
-      links: [
-        { href: "#", description: "Обо мне", isActive: true },
-        { href: "#", description: "Навыки", isActive: false },
-        { href: "#", description: "Мои работы", isActive: false },
-        { href: "#", description: "Контакты", isActive: false },
-      ],
-    };
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 .header__nav {
@@ -45,7 +48,7 @@ export default {
 
 .header__link {
   color: var(--header-nav-link-color);
-  transition: color .2s;
+  transition: color 0.2s;
   &:hover {
     color: var(--header-nav-link-hover);
   }

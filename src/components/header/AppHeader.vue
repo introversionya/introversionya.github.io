@@ -1,17 +1,3 @@
-<template>
-  <header class="header">
-    <app-header-progress-bar />
-    <div class="container">
-      <div class="header__inner">
-        <app-header-logo />
-        <app-header-nav />
-        <app-header-theme />
-        <app-header-burger />
-      </div>
-    </div>
-  </header>
-</template>
-
 <script>
 import AppHeaderProgressBar from "./AppHeaderProgressBar.vue";
 import AppHeaderLogo from "./AppHeaderLogo.vue";
@@ -30,7 +16,21 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<template>
+  <header class="header">
+    <app-header-progress-bar />
+    <div class="container">
+      <div class="header__inner">
+        <app-header-logo />
+        <app-header-nav />
+        <app-header-theme />
+        <app-header-burger />
+      </div>
+    </div>
+  </header>
+</template>
+
+<style lang="scss" scoped>
 .header {
   position: sticky;
   top: 0;
