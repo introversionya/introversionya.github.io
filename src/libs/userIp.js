@@ -10,5 +10,5 @@ async function getUserIp() {
   }
 }
 
-getUserIp();
+// getUserIp();
 // перенести в action
