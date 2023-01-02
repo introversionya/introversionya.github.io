@@ -1,0 +1,1 @@
+System.register(["./index-legacy-912af2cc.js"],(function(e,n){"use strict";var t,r,s;return{setters:[e=>{t=e._,r=e.o,s=e.c}],execute:function(){const n={class:"main"};e("default",t({name:"MainPage"},[["render",function(e,t,a,c,i,u){return r(),s("main",n)}]]))}}}));
