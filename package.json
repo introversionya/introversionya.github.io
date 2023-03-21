@@ -9,8 +9,11 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
-    "@types/node": "^18.15.3",
+    "@types/node": "^18.15.5",
+    "autoprefixer": "^10.4.14",
     "nuxt": "^3.3.1",
-    "push-dir": "^0.4.1"
+    "postcss": "^8.4.21",
+    "push-dir": "^0.4.1",
+    "sass": "^1.59.3"
   }
 }
