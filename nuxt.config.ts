@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     // pageTransition: true,
   },
   ssr: true,
-  // css: ['/assets/styles/main.scss'],
+  css: ['/assets/styles/main.scss'],
   postcss: {
     plugins: {
       autoprefixer: {
