@@ -1,11 +1,5 @@
 <template>
-  <div class="test">
-    test
+  <div>
+    hello!
   </div>
 </template>
-
-<style lang="scss" scoped>
-.test {
-  display: flex;
-}
-</style>

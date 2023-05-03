@@ -1,4 +1,5 @@
 {
+  "name": "personal-site",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -9,11 +10,10 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
-    "@types/node": "^18.15.5",
+    "@types/node": "^18",
     "autoprefixer": "^10.4.14",
-    "nuxt": "^3.3.1",
-    "postcss": "^8.4.21",
-    "push-dir": "^0.4.1",
-    "sass": "^1.59.3"
+    "nuxt": "^3.4.3",
+    "postcss": "^8.4.23",
+    "push-dir": "^0.4.1"
   }
 }
