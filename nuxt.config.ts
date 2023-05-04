@@ -1,8 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import legacy from '@vitejs/plugin-legacy';
+
 export default defineNuxtConfig({
   experimental: {
-    // payloadExtraction: false,
-    // inlineSSRStyles: false,
+    inlineSSRStyles: false,
   },
   app: {
     // keepalive: true,
@@ -17,5 +18,14 @@ export default defineNuxtConfig({
         overrideBrowserslist: ['cover 99.5%'],
       },
     },
+  },
+  telemetry: false,
+  vite: {
+    plugins: [
+      legacy({
+        targets: ['defaults', 'IE 11'],
+        polyfills: true,
+      }),
+    ],
   },
 });

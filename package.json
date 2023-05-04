@@ -1,5 +1,5 @@
 {
-  "name": "personal-site",
+  "name": "personal-site-introversionya",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -7,10 +7,11 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
     "@types/node": "^18",
+    "@vitejs/plugin-legacy": "^4.0.3",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.4.3",
     "postcss": "^8.4.23",

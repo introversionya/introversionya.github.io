@@ -1,13 +1,15 @@
-<script setup>
+<!-- <script setup>
 
-</script>
+</script> -->
 
 <template>
-  <div>
+  <div class="t">
     hello!
   </div>
 </template>
 
 <style lang="scss">
-
+.t {
+  display: flex;
+}
 </style>
