@@ -3,6 +3,7 @@ import legacy from '@vitejs/plugin-legacy';
 
 export default defineNuxtConfig({
   experimental: {
+    payloadExtraction: false,
     inlineSSRStyles: false,
   },
   app: {
