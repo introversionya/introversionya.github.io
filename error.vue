@@ -7,13 +7,13 @@ const handleError = () => {
 };
 
 useHead({
-  title: `Не найдено: ${error}`
+  title: error.message
 });
 </script>
 
 <template>
   <div v-if="error.statusCode === 404">
-    <h1>Неверный путь: {{ error }}</h1>
+    <h1>{{ error.message }}</h1>
     <button @click="handleError">На главную</button>
   </div>
 </template>
