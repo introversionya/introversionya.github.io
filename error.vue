@@ -6,10 +6,8 @@ const handleError = () => {
   console.clear();
 };
 
-console.log(error); //!!!
-
 useHead({
-  title: `Не найдено: ${error.url}`
+  title: `Не найдено: ${error}`
 });
 </script>
 

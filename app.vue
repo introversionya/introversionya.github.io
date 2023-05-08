@@ -27,6 +27,7 @@ useHead({
     { name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
     { name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
     { name: 'revisit-after', content: '1 day' },
+    { name: "author", content: "Anton Demidenko[introversionya], yaintroversivnost@gmail.com" }
   ],
 });
 </script>
