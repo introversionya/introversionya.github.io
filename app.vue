@@ -9,29 +9,31 @@ watch(
   () => (currentUrl.value = window.location.href)
 );
 
-onMounted(() => {
-  useHead({
-    htmlAttrs: { lang: 'ru' },
-    titleTemplate: title,
-    meta: [
-      // кодировка
-      { charset: 'UTF-8' },
-      // og
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: 'Персональный сайт introversionya | %s' },
-      { property: 'og:image', content: metaOgUrl },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'introversionya' },
-      { property: 'og:url', content: currentUrl },
-      // seo
-      { name: 'robots', content: 'index, follow' },
-      { name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
-      { name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
-      { name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
-      { name: 'revisit-after', content: '1 day' },
-    ],
-    link: [{ rel: 'image_src', href: metaOgUrl }],
-  });
+useHead({
+  htmlAttrs: { lang: 'ru', prefix: 'og: https://ogp.me/ns#' },
+  titleTemplate: title,
+  meta: [
+    // кодировка
+    { charset: 'UTF-8' },
+    // og
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: 'Персональный сайт introversionya | %s' },
+    { property: 'og:image', content: metaOgUrl },
+    { property: "vk:image", content: metaOgUrl },
+    { property: "og:image:type", content: "image/jpeg" },
+    { property: "og:image:width", content: "640" },
+    { property: "og:image:height", content: "320" },
+    { property: "og:image:alt", content: "logo introversionya" },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:site_name', content: 'introversionya' },
+    { property: 'og:url', content: currentUrl },
+    // seo
+    { name: 'robots', content: 'index, follow' },
+    { name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
+    { name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
+    { name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
+    { name: 'revisit-after', content: '1 day' },
+  ]
 });
 </script>
 
