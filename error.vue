@@ -6,9 +6,11 @@ const handleError = () => {
   console.clear();
 };
 
-useHead({
-  title: `Не найдено: ${error.url}`,
-  meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+onMounted(() => {
+  useHead({
+    title: `Не найдено: ${error.url}`,
+    meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+  });
 });
 </script>
 

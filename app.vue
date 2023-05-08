@@ -13,7 +13,11 @@ useHead({
   meta: [
     { property: 'og:title', content: title },
     { property: 'og:description', content: 'Персональный сайт introversionya | %s' },
-    { property: 'og:image', content: '/meta/og-introversionya.png' },
+    { property: 'og:image', content: '/meta/og.png' },
+    { property: 'vk:image', content: '/meta/og.png' },
+    { property: 'twitter:image', content: '/meta/og.png' },
+    { property: "og:image:width", content: '600' },
+    { property: "og:image:height", content: '315' },
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: 'introversionya' },
     { property: 'og:url', content: currentUrl },
