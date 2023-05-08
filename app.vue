@@ -2,7 +2,7 @@
 const title = 'introversionya | %s';
 const route = useRoute();
 const currentUrl = process.client ? ref(window.location.href) : null;
-const metaOgUrl = process.client ? `${currentUrl.value}meta/og.png` : null;
+const metaOgUrl = process.client ? `${currentUrl.value}meta/og.jpg` : null;
 
 watch(
   () => route.path,
