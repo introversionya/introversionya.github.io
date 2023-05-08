@@ -1,5 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import legacy from '@vitejs/plugin-legacy';
+import autoprefixer from './postcss.config.js';
+import meta from './meta.config.js';
 
 export default defineNuxtConfig({
   experimental: {
@@ -7,26 +7,13 @@ export default defineNuxtConfig({
     inlineSSRStyles: false,
   },
   app: {
+    head: meta,
     // keepalive: true,
     // layoutTransition: true,
     // pageTransition: true,
   },
   ssr: true,
-  css: ['/assets/styles/main.scss'],
-  postcss: {
-    plugins: {
-      autoprefixer: {
-        overrideBrowserslist: ['cover 99.5%'],
-      },
-    },
-  },
+  css: ['@/assets/styles/main.scss'],
+  postcss: autoprefixer,
   telemetry: false,
-  vite: {
-    plugins: [
-      legacy({
-        targets: ['defaults', 'IE 11'],
-        polyfills: true,
-      }),
-    ],
-  },
 });

@@ -1,1 +1,1 @@
-# Персональный сайт Anton Demidenko aka introversionya
+# Персональный сайт Anton Demidenko[introversionya]

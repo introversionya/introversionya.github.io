@@ -10,8 +10,7 @@
     "deploy": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
-    "@types/node": "^18",
-    "@vitejs/plugin-legacy": "^4.0.3",
+    "@types/node": "^20",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.4.3",
     "postcss": "^8.4.23",
