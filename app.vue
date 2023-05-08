@@ -25,7 +25,7 @@ useHead({
     { property: "og:image:alt", content: "logo introversionya" },
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: 'introversionya' },
-    { property: 'og:url', currentUrl },
+    { property: 'og:url', content: currentUrl },
     // seo
     { name: 'robots', content: 'index, follow' },
     { name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
