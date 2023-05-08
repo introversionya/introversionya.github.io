@@ -1,20 +1,5 @@
 export default {
-  htmlAttrs: {
-    lang: 'ru',
-  },
   meta: [
-    // кодировка
-    { charset: 'UTF-8' },
-    // SEO
-    { name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
-    { name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
-    { name: 'robots', content: 'index, follow' },
-    { name: 'copyright', content: 'introversionya' },
-    { name: 'language', content: 'ru' },
-    { name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
-    { name: 'reply-to', content: 'yaintroversivnost@gmail.com' },
-    { name: 'revisit-after', content: '1 day' },
-    { 'http-equiv': 'Cache-Control', content: 'no-cache' },
     // верификация
     { name: 'yandex-verification', content: '0197e3180d82e5e0' },
     { name: 'google-site-verification', content: '6GocpScyTXZ42fzAdnkkYNW-fuZ6zuWzWO2FGAson1c' },
