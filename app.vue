@@ -18,15 +18,15 @@ useHead({
     // og
     { property: 'og:title', content: title },
     { property: 'og:description', content: 'Персональный сайт introversionya | %s' },
-    { property: 'og:image', content: metaOgUrl },
-    { property: "vk:image", content: metaOgUrl },
+    { property: 'og:image', content: 'meta/og.jpg' },
+    { property: "vk:image", content: 'meta/og.jpg' },
     { property: "og:image:type", content: "image/jpeg" },
     { property: "og:image:width", content: "640" },
     { property: "og:image:height", content: "320" },
     { property: "og:image:alt", content: "logo introversionya" },
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: 'introversionya' },
-    { property: 'og:url', content: currentUrl },
+    { property: 'og:url', content: '/' },
     // seo
     { name: 'robots', content: 'index, follow' },
     { name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
