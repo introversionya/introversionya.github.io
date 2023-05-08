@@ -1,26 +1,11 @@
 <script setup>
-const { error } = defineProps(['error']);
-console.clear()
-
-useHead({
-  title: 'Ошибка',
-});
-
-// definePageMeta({
-//   title: 'Ошибка',
-// });
-
-
-// clearError()
-// const router = useRouter();
-
-// if (error.statusCode === 404) {
-//   // router.push('/404');
-//   clearError()
-// }
+defineProps(['error']);
+const handleError = () => clearError({ redirect: '/' });
 </script>
 
 <template>
-  <div>Такой страницы нет:(</div>
-  {{ error.statusCode }}
+  <div v-if="error.statusCode === 404">
+    <h1>Такой страницы нет</h1>
+    <button @click="handleError">На главную</button>
+  </div>
 </template>
