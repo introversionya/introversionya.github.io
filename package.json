@@ -1,6 +1,7 @@
 {
   "name": "personal-site-introversionya",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",

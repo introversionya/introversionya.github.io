@@ -1,10 +1,10 @@
 <script setup>
-const title = 'introversionya | %s';
 const route = useRoute();
-const currentUrl = process.client ? ref(window.location.href) : null; // полный URL путь
-const ogImageUrl = process.client ? `${window.location.origin}/meta/og-main.png` : null; // путь к meta og:image
+const title = 'introversionya | %s';
 
-// реактивно изменяем og:url при переходе на другой роут
+const ogImagePath = process.dev ? 'http://localhost:3000/meta/og-main.png' : 'https://introversionya.github.io/meta/og-main.png';
+const currentUrl = process.dev ? ref(`http://localhost:3000${route.path}`) : ref(`https://introversionya.github.io${route.path}`);
+
 watch(
   () => route.path,
   () => (currentUrl.value = window.location.href)
@@ -19,14 +19,14 @@ useHead({
     // og
     { property: 'og:title', content: title },
     { property: 'og:description', content: 'Персональный сайт introversionya | %s' },
-    { property: 'og:image', content: ogImageUrl },
-    { property: "vk:image", content: ogImageUrl },
+    { property: 'og:image', content: ogImagePath },
+    { property: "vk:image", content: ogImagePath },
     { property: "og:image:type", content: "image/png" },
     { property: "og:image:width", content: "640" },
     { property: "og:image:height", content: "320" },
-    { property: "og:image:alt", content: "logo introversionya" },
+    { property: "og:image:alt", content: "Логотип сайта 'introversionya'" },
     { property: 'og:type', content: 'website' },
-    { property: 'og:site_name', content: 'introversionya' },
+    { property: 'og:site_name', content: 'introversionya.github.io' },
     { property: 'og:url', content: currentUrl },
     // seo
     { name: 'robots', content: 'index, follow' },
