@@ -1,8 +1,10 @@
 <script setup>
 const title = 'introversionya | %s';
 const route = useRoute();
-const currentUrl = process.client ? ref(window.location.href) : null;
+const currentUrl = process.client ? ref(window.location.href) : null; // полный URL путь
+const ogImageUrl = process.client ? `${window.location.origin}/meta/og-main.png` : null; // путь к meta og:image
 
+// реактивно изменяем og:url при переходе на другой роут
 watch(
   () => route.path,
   () => (currentUrl.value = window.location.href)
@@ -17,8 +19,8 @@ useHead({
     // og
     { property: 'og:title', content: title },
     { property: 'og:description', content: 'Персональный сайт introversionya | %s' },
-    { property: 'og:image', content: '/meta/og.png' },
-    { property: "vk:image", content: '/meta/og.png' },
+    { property: 'og:image', content: ogImageUrl },
+    { property: "vk:image", content: ogImageUrl },
     { property: "og:image:type", content: "image/png" },
     { property: "og:image:width", content: "640" },
     { property: "og:image:height", content: "320" },
