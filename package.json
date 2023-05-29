@@ -1,7 +1,6 @@
 {
   "name": "personal-site-introversionya",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -13,7 +12,7 @@
   "devDependencies": {
     "@types/node": "^20",
     "autoprefixer": "^10.4.14",
-    "nuxt": "^3.4.3",
+    "nuxt": "^3.5.1",
     "postcss": "^8.4.23",
     "push-dir": "^0.4.1",
     "sass": "^1.62.1"

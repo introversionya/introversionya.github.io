@@ -1,5 +1,5 @@
 [data-theme="dark"] {
-  --loader-bg: rgba(0, 0, 0, 1);
+  // --loader-bg: rgba(0, 0, 0, 1);
   --body-bg: #1a1e22;
   --body-color: #939393;
   --header-bg: #212a33;
@@ -7,9 +7,9 @@
   --header-logo-color: #939393;
   --header-logo-hover: #fff;
   --header-nav-link-color: #939393;
-  --header-nav-link-hover: #fff;
+  --header-nav-link-hover-color: #fff;
   --header-nav-link-active-color: #fff;
-  --header-date-time-color: #939393;
+  // --header-date-time-color: #939393;
   --theme-switcher-color: #939393;
   --theme-switcher-bg: #212a33;
   --theme-switcher-hover: #fff;
@@ -17,10 +17,10 @@
   --theme-switcher-menu-hover: #000;
   --burger-btn-color: #939393;
   --burger-btn-color-hover: #fff;
-  --tooltip-bg: #000;
-  --tooltip-border-color: rgb(28, 58, 81);
+  // --tooltip-bg: #000;
+  // --tooltip-border-color: rgb(28, 58, 81);
 }
 
 [data-theme="light"] {
-  --test: 5px; // удалить это потом
+  --test: 5px; /* удалить это потом */
 }
