@@ -41,11 +41,11 @@ export default defineNuxtConfig({
   ],
   css: ['@/assets/styles/main.scss'],
   postcss: {
-    plugins: {
+    plugins: process.env.NODE_ENV === 'production' ? {
       autoprefixer: {
         overrideBrowserslist: ['cover 99.5%']
-      },
-    }
+      }
+    } : {}
   },
   telemetry: false,
 });

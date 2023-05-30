@@ -1,9 +1,10 @@
 <script setup>
 const links = reactive([
   { id: 1, href: '#', description: 'Обо мне', isActive: true },
-  { id: 2, href: '#', description: 'Навыки', isActive: false },
-  { id: 3, href: '#', description: 'Мои работы', isActive: false },
-  { id: 4, href: '#', description: 'Контакты', isActive: false },
+  { id: 2, href: '#', description: 'Мои работы', isActive: false },
+  { id: 3, href: '#', description: 'Контакты', isActive: false },
+  { id: 4, href: '#', description: 'Блог', isActive: false },
+  { id: 5, href: '#', description: 'Заметки', isActive: false },
 ]);
 </script>
 

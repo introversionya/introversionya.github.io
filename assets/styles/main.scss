@@ -50,6 +50,11 @@ body {
   color: var(--body-color);
 }
 
+.title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
 .link-hover {
   position: relative;
   &::before,
