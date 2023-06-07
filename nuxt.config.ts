@@ -1,4 +1,7 @@
 export default defineNuxtConfig({
+  vue: {
+    runtimeCompiler: true
+  },
   experimental: {
     payloadExtraction: false,
     inlineSSRStyles: false,
@@ -26,6 +29,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicons/favicon-16x16.png' },
         { rel: 'manifest', href: '/favicons/site.webmanifest' },
         { rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#435e66' },
+        { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }
       ],
     },
     // keepalive: true,

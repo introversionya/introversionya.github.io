@@ -167,7 +167,7 @@ const updateState = (currentIcon, currentTheme, mode) => {
   }
 
   &:hover .theme-switcher__toggle-icon:deep(svg) {
-    fill: var(--theme-switcher-hover);
+    color: var(--theme-switcher-hover);
   }
 
   &--active {
@@ -176,7 +176,7 @@ const updateState = (currentIcon, currentTheme, mode) => {
   }
 
   &--active .theme-switcher__toggle-icon:deep(svg) {
-    fill: var(--theme-switcher-hover);
+    color: var(--theme-switcher-hover);
   }
 }
 
@@ -187,8 +187,11 @@ const updateState = (currentIcon, currentTheme, mode) => {
 .theme-switcher__toggle-icon:deep(svg) {
   width: 15px;
   height: 15px;
-  fill: var(--theme-switcher-color);
-  transition: fill 0.2s;
+  color: var(--theme-switcher-color);
+  transition: color 0.2s;
+  path {
+    fill: currentColor;
+  }
 }
 
 .theme-switcher__menu {
@@ -251,7 +254,10 @@ const updateState = (currentIcon, currentTheme, mode) => {
   }
 
   &:hover .theme-switcher__menu-icon:deep(svg) {
-    fill: var(--theme-switcher-menu-hover);
+    color: var(--theme-switcher-menu-hover);
+    path {
+      fill: currentColor;
+    }
   }
 }
 
@@ -262,7 +268,9 @@ const updateState = (currentIcon, currentTheme, mode) => {
 .theme-switcher__menu-icon:deep(svg) {
   width: 15px;
   height: 15px;
-  fill: var(--theme-switcher-color);
+  path {
+    fill: var(--theme-switcher-color);
+  }
 }
 
 // анимация появления меню

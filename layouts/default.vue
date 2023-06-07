@@ -1,7 +1,7 @@
 <template>
   <div id="__layout">
     <div class="sticky-container">
-      <TheHeader />
+      <TheHeader v-show="true" />
       <main class="main">
         <slot />
       </main>

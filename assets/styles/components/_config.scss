@@ -2,28 +2,32 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-
   margin: 0;
+  box-sizing: border-box;
   line-height: inherit;
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   font-style: inherit;
-  background-color: inherit;
+  background-color: transparent;
   color: inherit;
-
-  /* Fix размытия изображений в chromium */
-  image-rendering: -webkit-optimize-contrast;
-
-  /* Сглаживание шрифтов */
+  text-rendering: geometricPrecision;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
 }
 
-html {
-  /* overflow-y: hidden; */
+/* html {
+  overflow-y: hidden;
+}
+
+body {
+  overflow-y: scroll;
+} */
+
+/* Настройки body */
+body {
+  min-width: 320px;
+  position: relative;
 }
 
 /* Вытягиваем все картинки по ширине и убираем отступ */
@@ -53,12 +57,4 @@ a {
   &:visited {
     color: blue;
   }
-}
-
-/* Настройки body */
-body {
-  min-width: 320px;
-  position: relative;
-  /* overflow-y: scroll; */
-  /* height: 100vh; */
 }
