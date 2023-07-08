@@ -3,18 +3,18 @@ const result = ref(0);
 
 onMounted(() => {
   window.addEventListener('scroll', calcProgress);
+  window.addEventListener('resize', calcProgress);
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', calcProgress);
+  window.removeEventListener('resize', calcProgress);
 });
 
 const calcProgress = () => {
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const posY = window.pageYOffset;
-
-  if (height !== 0 || posY !== 0) result.value = (posY / height) * 100;
-  else result.value = 0;
+  const posY = window.scrollY;
+  posY !== 0 && height !== 0 ? (result.value = (posY / height) * 100) : (result.value = 0);
 };
 </script>
 
@@ -28,10 +28,10 @@ const calcProgress = () => {
 
 <style lang="scss" scoped>
 .header__bar {
-  border: none;
+  appearance: none;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -2px;
   width: 100%;
   height: 2px;
   pointer-events: none;
@@ -41,11 +41,11 @@ const calcProgress = () => {
   }
 
   &::-moz-progress-bar {
-    background-color: var(--header-bar-color);
+    background-color: var(--progress-bg-color);
   }
 
   &::-webkit-progress-value {
-    background-color: var(--header-bar-color);
+    background-color: var(--progress-bg-color);
   }
 }
 </style>

@@ -1,17 +1,13 @@
 <template>
   <div id="__layout">
-    <div class="sticky-container">
-      <TheHeader v-show="true" />
-      <main class="main">
-        <slot />
-      </main>
-      <TheFooter />
+    <div class="wrapper">
+      <TheHeader />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.sticky-container {
+.wrapper {
   position: absolute;
   inset: 0;
 }

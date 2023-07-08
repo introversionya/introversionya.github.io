@@ -5,9 +5,5 @@ useHead({
 </script>
 
 <template>
-  <TheAbout />
+  
 </template>
-
-<style lang="scss" scoped>
-
-</style>

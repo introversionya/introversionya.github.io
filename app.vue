@@ -1,12 +1,14 @@
 <script setup>
-const title = 'introversionya | %s';
+// import { useTestStore } from './stores/testStore';
+// const testStore = useTestStore();
+const config = useRuntimeConfig();
 const route = useRoute();
 
-const mainUrl = 'https://introversionya.github.io';
-const devUrl = 'http://localhost:3000';
+const title = 'introversionya | %s';
+const colorScheme = 'dark';
 
-const currentUrl = process.dev ? ref(`${devUrl}${route.path}`) : ref(`${mainUrl}${route.path}`);
-const ogImagePath = process.dev ? `${devUrl}/meta/og-main.png` : `${mainUrl}/meta/og-main.png`;
+const currentUrl = process.dev ? ref(`${config.public.linkDevelopment}${route.path}`) : ref(`${config.public.linkProduction}${route.path}`);
+const ogImagePath = process.dev ? `${config.public.linkDevelopment}/meta/og-main.png` : `${config.public.linkProduction}/meta/og-main.png`;
 
 watch(
   () => route.path,
@@ -14,7 +16,7 @@ watch(
 );
 
 useHead({
-  htmlAttrs: { lang: 'ru', prefix: 'og: https://ogp.me/ns#' },
+  htmlAttrs: { lang: 'ru', prefix: 'og: https://ogp.me/ns#', "data-theme": "dark" },
   titleTemplate: title,
   meta: [
     // og
@@ -34,16 +36,11 @@ useHead({
     { hid: 'description', name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
     { hid: 'keywords', name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
     { hid: 'author', name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
+    // { name: 'color-scheme', content: colorScheme },
   ],
 });
 </script>
 
 <template>
-  <NuxtLayout name="default">
-    <NuxtPage />
-  </NuxtLayout>
+  <NuxtLayout name="default" />
 </template>
-
-<style lang="scss">
-
-</style>

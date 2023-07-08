@@ -5,8 +5,7 @@
       <div class="header__inner">
         <TheHeaderLogo />
         <TheHeaderNav />
-        <TheHeaderTheme />
-        <TheHeaderBurger />
+        <button class="t">test</button>
       </div>
     </div>
   </header>
@@ -17,15 +16,19 @@
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
   font-weight: 500;
   padding: var(--header-padding);
-  background-color: var(--header-bg);
+  background-color: var(--content-bg-color);
   z-index: 1000;
+}
 
-  &__inner {
-    display: flex;
-    align-items: center;
-  }
+.header__inner {
+  display: flex;
+  align-items: center;
+  background-color: rgb(132, 122, 124);
+}
+
+.t {
+  margin-left: auto;
 }
 </style>
