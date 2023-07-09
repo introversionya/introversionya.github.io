@@ -10,7 +10,7 @@
   --white: #fff;
 }
 
-[data-theme="dark"] {
+:root[data-theme="dark"] {
   --main-bg-color: #010409;
   --main-color: #e6edf3;
   --content-bg-color: #161b22;
@@ -18,7 +18,7 @@
   --link-underline-bg-color-left: #686bb3;
   --link-underline-bg-color-right: #475d72;
   --progress-bg-color: #68696c;
-  --nav-link-extra-bg-color: var(--black);
+  --nav-extra-bg-color: var(--black);
   // --theme-switcher-bg-color: var(--black);
   // --theme-switcher-menu-icon-hover: var(--black);
 }

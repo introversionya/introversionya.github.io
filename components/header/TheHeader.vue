@@ -5,7 +5,6 @@
       <div class="header__inner">
         <TheHeaderLogo />
         <TheHeaderNav />
-        <button class="t">test</button>
       </div>
     </div>
   </header>
@@ -25,10 +24,5 @@
 .header__inner {
   display: flex;
   align-items: center;
-  background-color: rgb(132, 122, 124);
-}
-
-.t {
-  margin-left: auto;
 }
 </style>

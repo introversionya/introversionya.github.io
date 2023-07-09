@@ -1,10 +1,11 @@
 <script setup>
+let countId = 0;
+
 const links = reactive([
-  { id: 1, href: '#', description: 'Обо мне', isActive: true },
-  { id: 2, href: '#', description: 'Мои работы', isActive: false },
-  { id: 3, href: '#', description: 'Контакты', isActive: false },
-  { id: 4, href: '#', description: 'Блог', isActive: false },
-  { id: 5, href: '#', description: 'Заметки', isActive: false },
+  { id: countId++, href: '#', description: 'Обо мне', isActive: true },
+  { id: countId++, href: '#', description: 'Мои работы', isActive: false },
+  { id: countId++, href: '#', description: 'Блог', isActive: false },
+  { id: countId++, href: '#', description: 'Веб-справочник', isActive: false },
 ]);
 
 const navMain = ref(null);
@@ -13,47 +14,46 @@ const navExtraMenu = ref(null);
 const isActiveNavExtra = ref(false);
 const freeSpace = ref(0);
 
-// проверка свободного места справа от навигации
 const checkFreeSpace = () => {
   if (!navMain.value.nextElementSibling) {
     freeSpace.value = navMain.value.parentElement.getBoundingClientRect().right - navMain.value.getBoundingClientRect().right;
-    // console.log('нет соседей');
   } else if (navMain.value.nextElementSibling.classList.contains('header__nav-extra') && !navMain.value.nextElementSibling.nextElementSibling) {
     freeSpace.value = navMain.value.parentElement.getBoundingClientRect().right - navMain.value.nextElementSibling.getBoundingClientRect().right;
-    // console.log('только extra');
   } else if (!navMain.value.nextElementSibling.classList.contains('header__nav-extra')) {
     freeSpace.value = navMain.value.nextElementSibling.getBoundingClientRect().left - navMain.value.getBoundingClientRect().right;
-    // console.log('extra нет, но есть сосед');
   } else {
     freeSpace.value = navMain.value.nextElementSibling.nextElementSibling.getBoundingClientRect().left - navMain.value.nextElementSibling.getBoundingClientRect().right;
-    // console.log('extra есть + сосед');
   }
 };
 
-const transferLink = () => {
+const transferLink = (iteration) => {
   checkFreeSpace();
 
-  const lastLinkNavMain = navMain.value.children[navMain.value.children.length - 1];
-  const firstLinkNavExtra = navExtraMenu.value ? navExtraMenu.value.children[0] : null;
+  const lastLink = navMain.value.children.length ? navMain.value.children[navMain.value.children.length - 1] : null;
+  const firstLink = navExtra.value && navExtraMenu.value.children.length ? navExtraMenu.value.children[0] : null;
 
-  if (freeSpace.value < 30) {
+  if (freeSpace.value < 30 && lastLink) {
     isActiveNavExtra.value = true;
-    nextTick(() => navExtraMenu.value.prepend(lastLinkNavMain));
+    nextTick(() => navExtraMenu.value.prepend(lastLink));
   }
 
-  if (firstLinkNavExtra && freeSpace.value > firstLinkNavExtra.offsetWidth + 60) {
-    navMain.value.append(firstLinkNavExtra);
-    navExtraMenu.value.children.length === 0 ? isActiveNavExtra.value = false : null;
+  if (freeSpace.value > firstLink?.offsetWidth + 60) {
+    nextTick(() => navMain.value.append(firstLink));
   }
 
-  const stop = setTimeout(transferLink, 100);
-  freeSpace.value > 30 ? clearTimeout(stop) : null;
+  nextTick(() => {
+    navMain.value.children.length === 0 ? navExtra.value ? navExtra.value.style.marginLeft = '0': null : navExtra.value ? navExtra.value.style.marginLeft = '30px': null;
+    navExtra.value && navExtraMenu.value.children.length === 0 ? isActiveNavExtra.value = false : null;
+    iteration < links.length ? transferLink(iteration + 1) : null;
+  });
 };
 
 onMounted(() => {
-  transferLink();
-  window.addEventListener('resize', transferLink);
+  transferLink(0);
+  window.addEventListener('resize', () => transferLink(0));
 });
+
+onUnmounted(() => window.removeEventListener('resize', () => transferLink(0)));
 </script>
 
 <template>
@@ -99,6 +99,7 @@ onMounted(() => {
 
   &--active {
     cursor: default;
+    color: var(--accent-color);
   }
 
   &:active:not(.header__nav-link--active),
@@ -111,7 +112,6 @@ onMounted(() => {
   position: relative;
   display: flex;
   align-items: center;
-  margin-left: 30px;
 
   &:focus-within .header__nav-menu,
   &:hover .header__nav-menu {
@@ -169,19 +169,17 @@ onMounted(() => {
 }
 
 .header__nav-menu {
-  display: flex;
   visibility: hidden;
-  padding: 5px 10px;
+  display: flex;
+  gap: 10px 0;
+  padding: 10px;
   position: absolute;
   bottom: -10px;
   left: 50%;
   transform: translate(-50%, 100%);
   border: 1px solid var(--main-color);
-  background-color: var(--nav-link-extra-bg-color);
+  background-color: var(--nav-extra-bg-color);
   border-radius: 4px;
   flex-direction: column;
-  a {
-    width: max-content;
-  }
 }
 </style>
