@@ -15,10 +15,10 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "0.6.7",
-    "@types/node": "20.4.1",
+    "@types/node": "20.4.2",
     "autoprefixer": "10.4.14",
-    "nuxt": "3.6.2",
-    "postcss": "8.4.25",
+    "nuxt": "3.6.3",
+    "postcss": "8.4.26",
     "push-dir": "0.4.1",
     "sass": "1.63.6"
   },

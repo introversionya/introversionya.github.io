@@ -2,22 +2,6 @@ const development = process.env.NODE_ENV === 'development';
 const production = process.env.NODE_ENV === 'production';
 
 export default defineNuxtConfig({
-  runtimeConfig: {
-    public: {
-      linkDevelopment: process.env.LINK_DEVELOPMENT,
-      linkProduction: process.env.LINK_PRODUCTION
-    }
-  },
-
-  vue: {
-    runtimeCompiler: development ? true : false,
-  },
-
-  experimental: {
-    payloadExtraction: false,
-    inlineSSRStyles: false,
-  },
-
   app: {
     head: {
       meta: [
@@ -44,23 +28,14 @@ export default defineNuxtConfig({
         { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
     },
-    // keepalive: true,
-    // layoutTransition: true,
-    // pageTransition: true,
+    keepalive: true,
+    layoutTransition: true,
+    pageTransition: true,
   },
-
-  modules: [
-    '@pinia/nuxt',
-  ],
 
   ssr: true,
 
-  components: [
-    {
-      path: '~/components',
-      pathPrefix: false,
-    },
-  ],
+  modules: ['@pinia/nuxt'],
 
   css: ['@/assets/styles/main.scss'],
 
@@ -74,9 +49,32 @@ export default defineNuxtConfig({
       : {},
   },
 
-  telemetry: false,
+  runtimeConfig: {
+    public: {
+      linkDevelopment: process.env.LINK_DEVELOPMENT,
+      linkProduction: process.env.LINK_PRODUCTION,
+    },
+  },
+
+  vue: {
+    runtimeCompiler: development ? true : false,
+  },
+
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
+
+  experimental: {
+    payloadExtraction: false,
+    inlineSSRStyles: false,
+  },
 
   devtools: {
     enabled: false,
   },
+
+  telemetry: false,
 });

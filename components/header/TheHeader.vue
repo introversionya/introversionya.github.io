@@ -5,6 +5,7 @@
       <div class="header__inner">
         <TheHeaderLogo />
         <TheHeaderNav />
+        <TheTheme v-if="true" style="margin-left: auto;" />
       </div>
     </div>
   </header>
@@ -24,5 +25,8 @@
 .header__inner {
   display: flex;
   align-items: center;
+  background-color: var(--header-inner-bg-color);
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 </style>

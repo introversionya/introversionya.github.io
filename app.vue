@@ -1,6 +1,4 @@
 <script setup>
-// import { useTestStore } from './stores/testStore';
-// const testStore = useTestStore();
 const config = useRuntimeConfig();
 const route = useRoute();
 
@@ -36,11 +34,13 @@ useHead({
     { hid: 'description', name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
     { hid: 'keywords', name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
     { hid: 'author', name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
-    // { name: 'color-scheme', content: colorScheme },
+    // { hid: name: 'color-scheme', content: colorScheme },
   ],
 });
 </script>
 
 <template>
-  <NuxtLayout name="default" />
+  <NuxtLayout name="default">
+    <NuxtPage />
+  </NuxtLayout>
 </template>

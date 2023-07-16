@@ -21,6 +21,7 @@ body {
 
 .link-underline {
   position: relative;
+
   &::before,
   &::after {
     pointer-events: none;
@@ -42,15 +43,17 @@ body {
     background-color: var(--link-underline-bg-color-right);
   }
 
-  &:hover::before,
-  &:hover::after {
-    width: 50%;
-  }
-
   &--active {
     &::before,
     &::after {
       width: 50%;
     }
+  }
+
+  &:focus-visible:not(.link-underline--active)::before,
+  &:focus-visible:not(.link-underline--active)::after,
+  &:hover:not(.link-underline--active)::before,
+  &:hover:not(.link-underline--active)::after {
+    width: 50%;
   }
 }
