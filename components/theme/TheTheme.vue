@@ -50,6 +50,7 @@ onMounted(() => setTheme());
 }
 
 .theme__btn {
+  transform-style: preserve-3d;
   &--active {
     cursor: default;
     color: var(--accent-color);
@@ -63,7 +64,7 @@ onMounted(() => setTheme());
   &:hover:not(.theme__btn--active) {
     color: var(--accent-color);
     &:deep(svg) {
-      transform: scale(0.95);
+      transform: scale(0.85);
     }
   }
 }
@@ -72,10 +73,10 @@ onMounted(() => setTheme());
   width: 15px;
   height: 15px;
   fill: currentColor;
-  transition: transform 0.2s, color 0.2s;
 
   &:not(.theme__btn--active) {
-    will-change: transform, color;
+    will-change: transform;
+    transition: transform .3s linear, color .3s linear;
   }
 }
 </style>

@@ -16,8 +16,8 @@ const navExtra = ref(null);
 const navExtraMenu = ref(null);
 const isActiveNavMain = ref(true);
 const isActiveNavExtra = ref(false);
-const freeSpace = ref(0);
-let distance = null;
+let freeSpace = 0;
+let distance = 0;
 let used = 0;
 
 const checkFreeSpace = () => {
@@ -28,17 +28,17 @@ const checkFreeSpace = () => {
   const isActiveExtra = isActiveNavExtra.value;
 
   if (isActiveMain && isActiveExtra && extra?.nextElementSibling) {
-    freeSpace.value = extra?.nextElementSibling.getBoundingClientRect().left - extra?.getBoundingClientRect().right;
+    freeSpace = extra?.nextElementSibling.getBoundingClientRect().left - extra?.getBoundingClientRect().right;
   } else if (isActiveMain && isActiveExtra && !extra?.nextElementSibling) {
-    freeSpace.value = extra?.parentElement.getBoundingClientRect().right - extra?.getBoundingClientRect().right;
+    freeSpace = extra?.parentElement.getBoundingClientRect().right - extra?.getBoundingClientRect().right;
   } else if (isActiveMain && !isActiveExtra && !main?.nextElementSibling) {
-    freeSpace.value = main?.parentElement.getBoundingClientRect().right - main?.getBoundingClientRect().right;
+    freeSpace = main?.parentElement.getBoundingClientRect().right - main?.getBoundingClientRect().right;
   } else if (isActiveMain && !isActiveExtra && main?.nextElementSibling) {
-    freeSpace.value = main?.nextElementSibling.getBoundingClientRect().left - main?.getBoundingClientRect().right;
+    freeSpace = main?.nextElementSibling.getBoundingClientRect().left - main?.getBoundingClientRect().right;
   } else if (!isActiveMain && isActiveExtra && !extra?.nextElementSibling) {
-    freeSpace.value = extra?.parentElement.getBoundingClientRect().right - extra?.getBoundingClientRect().right;
+    freeSpace = extra?.parentElement.getBoundingClientRect().right - extra?.getBoundingClientRect().right;
   } else if (!isActiveMain && isActiveExtra && extra?.nextElementSibling) {
-    freeSpace.value = extra?.nextElementSibling.getBoundingClientRect().left - extra?.getBoundingClientRect().right;
+    freeSpace = extra?.nextElementSibling.getBoundingClientRect().left - extra?.getBoundingClientRect().right;
   }
 };
 
@@ -52,42 +52,51 @@ const firstLinkExtra = computed(() => {
   return extraLinks[0];
 });
 
-const transferLink = (iteration) => {
-  nextTick(() => checkFreeSpace());
-
-  if (lastLinkMain.value && freeSpace.value < distance) {
-    isActiveNavExtra.value = true;
-    lastLinkMain.value.location = 'extra';
-    nextTick(() => checkFreeSpace());
-  }
-
-  if (firstLinkExtra.value && freeSpace.value > distance * 2 + used) {
-    isActiveNavMain.value = true;
-    used = navExtraMenu.value.children[0].offsetWidth;
-    firstLinkExtra.value.location = 'main';
-    nextTick(() => checkFreeSpace());
-  }
-
-  nextTick(() => (!navMain.value?.children.length ? (isActiveNavMain.value = false) : null));
-  nextTick(() => (!navExtraMenu.value?.children.length ? (isActiveNavExtra.value = false) : null));
-  nextTick(() =>
-    !isActiveNavMain.value && isActiveNavExtra.value
-      ? (navExtra.value.style.margin = '0 var(--header-nav-distance) 0 0')
-      : isActiveNavMain.value && isActiveNavExtra.value
-      ? (navExtra.value.style.margin = '0 0 0 var(--header-nav-distance)')
-      : null
-  );
-
-  nextTick(() => (iteration < links.length ? transferLink(iteration + 1) : null));
-};
-
-onMounted(() => {
+const getDistance = () => {
   distance = isActiveNavMain.value
     ? parseInt(getComputedStyle(navMain.value, null).columnGap, 10)
     : isActiveNavExtra.value
     ? parseInt(getComputedStyle(navExtra.value, null).marginLeft, 10)
     : null;
+};
 
+const setMarginStyle = () => {
+  !isActiveNavMain.value && isActiveNavExtra.value
+    ? (navExtra.value.style.margin = '0 var(--header-nav-distance) 0 0')
+    : isActiveNavMain.value && isActiveNavExtra.value
+    ? (navExtra.value.style.margin = '0 0 0 var(--header-nav-distance)')
+    : null;
+};
+
+const isActiveNavigations = () => {
+  !navMain.value?.children.length ? (isActiveNavMain.value = false) : null;
+  !navExtraMenu.value?.children.length ? (isActiveNavExtra.value = false) : null;
+};
+
+const transferLink = (iteration) => {
+  checkFreeSpace();
+
+  if (lastLinkMain.value && freeSpace < distance) {
+    isActiveNavExtra.value = true;
+    lastLinkMain.value.location = 'extra';
+    used = window.innerWidth;
+  }
+
+  if (firstLinkExtra.value && used < window.innerWidth) {
+    isActiveNavMain.value = true;
+    firstLinkExtra.value.location = 'main';
+    used = 0;
+  }
+
+  nextTick(() => {
+    getDistance();
+    setMarginStyle();
+    isActiveNavigations();
+    iteration <= links.length ? transferLink(iteration + 1) : null;
+  });
+};
+
+onMounted(() => {
   transferLink(0);
   window.addEventListener('resize', () => transferLink(0));
 });
@@ -225,7 +234,7 @@ onUnmounted(() => window.removeEventListener('resize', () => transferLink(0)));
 .header__nav-menu {
   visibility: hidden;
   display: flex;
-  gap: 10px 0;
+  gap: 15px 0;
   padding: 10px;
   position: absolute;
   bottom: -10px;

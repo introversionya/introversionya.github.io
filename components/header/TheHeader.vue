@@ -5,7 +5,7 @@
       <div class="header__inner">
         <TheHeaderLogo />
         <TheHeaderNav />
-        <TheTheme v-if="true" style="margin-left: auto;" />
+        <TheTheme style="margin-left: auto;" />
       </div>
     </div>
   </header>

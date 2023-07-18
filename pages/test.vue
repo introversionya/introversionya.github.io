@@ -49,6 +49,9 @@ button {
   border: 1px solid;
   width: fit-content;
   padding: 5px 10px;
+  &:active {
+    background-color: red;
+  }
 }
 
 .box {
