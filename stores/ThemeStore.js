@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-const themeKey = 'theme[introversionya.github.io]';
+export const themeKey = 'theme[introversionya.github.io]';
 const isDarkTheme = process.client ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
 export const useThemeStore = defineStore('themeStore', () => {
@@ -12,8 +12,7 @@ export const useThemeStore = defineStore('themeStore', () => {
   // actions
   const init = () => {
     const { theme, mode } = JSON.parse(localStorage.getItem(themeKey)) ?? {};
-    mode === 'auto' || !mode ? systemTheme() : mode === 'custom' ? updateState(theme, mode) : clearLocalStorage();
-    window.addEventListener('storage', ({ key, newValue }) => key === themeKey && updateState(...Object.values(JSON.parse(newValue))));
+    (!theme && !mode) || mode === 'auto' ? systemTheme() : mode === 'custom' ? updateState(theme, mode) : clearLocalStorage();
   };
 
   const systemTheme = () => {
@@ -32,8 +31,8 @@ export const useThemeStore = defineStore('themeStore', () => {
   };
 
   const clearLocalStorage = () => {
-    localStorage.clear(themeKey);
-    location.reload();
+    localStorage.removeItem(themeKey);
+    init();
   };
 
   watch(
@@ -41,5 +40,5 @@ export const useThemeStore = defineStore('themeStore', () => {
     () => localStorage.setItem(themeKey, JSON.stringify({ theme: currentTheme.value, mode: currentMode.value }))
   );
 
-  return { getTheme, getMode, init, systemTheme, customTheme };
+  return { getTheme, getMode, init, systemTheme, customTheme, updateState };
 });

@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/ThemeStore';
+import { useThemeStore, themeKey } from '@/stores/ThemeStore';
 
 const themeStore = useThemeStore();
 const config = useRuntimeConfig();
@@ -10,7 +10,14 @@ const title = 'introversionya | %s';
 const currentUrl = computed(() => process.dev ? `${config.public.linkDevelopment}${route.path}` : `${config.public.linkProduction}${route.path}`);
 const ogImagePath = process.dev ? `${config.public.linkDevelopment}/meta/og-main.png` : `${config.public.linkProduction}/meta/og-main.png`;
 
-onMounted(() => themeStore.init());
+const handleStorage = ({ key, newValue }) => key === themeKey && themeStore.updateState(...Object.values(JSON.parse(newValue)));
+
+onMounted(() => {
+  themeStore.init();
+  window.addEventListener('storage', handleStorage);
+});
+
+onUnmounted(() => window.removeEventListener('storage', handleStorage));
 
 useHead(() => ({
   htmlAttrs: { lang: 'ru', prefix: 'og: https://ogp.me/ns#', "data-theme": themeStore.getTheme, "data-theme-mode": themeStore.getMode },
