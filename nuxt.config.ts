@@ -50,9 +50,10 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    // private
+    linkProduction: process.env.LINK_PRODUCTION,
     public: {
-      linkDevelopment: process.env.LINK_DEVELOPMENT,
-      linkProduction: process.env.LINK_PRODUCTION,
+      // ..
     },
   },
 

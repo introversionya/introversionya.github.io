@@ -7,8 +7,8 @@ const route = useRoute();
 
 const title = 'introversionya | %s';
 
-const currentUrl = computed(() => process.dev ? `${config.public.linkDevelopment}${route.path}` : `${config.public.linkProduction}${route.path}`);
-const ogImagePath = process.dev ? `${config.public.linkDevelopment}/meta/og-main.png` : `${config.public.linkProduction}/meta/og-main.png`;
+const currentUrl = computed(() => process.server ? `${config.linkProduction}${route.path}` : `${window.location.origin}${route.path}`);
+const ogImagePath = computed(() => process.server ? `${config.linkProduction}/meta/og-main.png` : `${window.location.origin}/meta/og-main.png`);
 
 const handleStorage = ({ key, newValue }) => key === themeKey && themeStore.updateState(...Object.values(JSON.parse(newValue)));
 
