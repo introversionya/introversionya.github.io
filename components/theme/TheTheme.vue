@@ -2,39 +2,37 @@
 import { useIconsStore } from '@/stores/IconsStore';
 import { useThemeStore } from '@/stores/ThemeStore';
 const iconsStore = useIconsStore().getIcons;
-// --------------------------------------------
+const themeStore = useThemeStore();
 
-const themeKey = 'theme[introversionya.github.io]';
-
-const setTheme = () => {
-  if (!localStorage.getItem(themeKey)) {
-    // systemTheme();
-  } else {
-    // установить тему из LS
-  }
-};
-
-onMounted(() => setTheme());
+const isLightCustom = computed(() => themeStore.getTheme === 'light' && themeStore.getMode === 'custom');
+const isSystemAuto = computed(() => themeStore.getTheme === 'dark' && themeStore.getMode === 'auto');
+const isDarkCustom = computed(() => themeStore.getTheme === 'dark' && themeStore.getMode === 'custom');
 </script>
 
 <template>
-  <div class="theme" aria-label="меню переключения темы сайта">
+  <div
+    class="theme"
+    aria-label="меню переключения темы сайта"
+  >
     <button
+      @click="themeStore.customTheme('light', 'custom')"
       aria-label="Кнопка переключения на светлую тему"
       title="Светлая тема"
-      class="theme__btn theme__btn--active"
+      :class="['theme__btn', { 'theme__btn--active': isLightCustom }]"
       v-html="iconsStore.light"
     ></button>
     <button
+      @click="themeStore.systemTheme"
       aria-label="Кнопка переключения темы на автоматический режим"
       title="Синхронизация с OS"
-      class="theme__btn"
+      :class="['theme__btn', { 'theme__btn--active': isSystemAuto }]"
       v-html="iconsStore.auto"
     ></button>
     <button
+      @click="themeStore.customTheme('dark', 'custom')"
       aria-label="Кнопка переключения на темную тему"
       title="Темная тема"
-      class="theme__btn"
+      :class="['theme__btn', { 'theme__btn--active': isDarkCustom }]"
       v-html="iconsStore.dark"
     ></button>
   </div>
@@ -64,7 +62,7 @@ onMounted(() => setTheme());
   &:hover:not(.theme__btn--active) {
     color: var(--accent-color);
     &:deep(svg) {
-      transform: scale(0.85);
+      transform: scale(0.9);
     }
   }
 }
@@ -75,8 +73,8 @@ onMounted(() => setTheme());
   fill: currentColor;
 
   &:not(.theme__btn--active) {
-    will-change: transform;
-    transition: transform .3s linear, color .3s linear;
+    will-change: transform, color;
+    transition: transform 0.3s linear, color 0.3s linear;
   }
 }
 </style>

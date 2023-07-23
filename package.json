@@ -20,7 +20,7 @@
     "nuxt": "3.6.3",
     "postcss": "8.4.26",
     "push-dir": "0.4.1",
-    "sass": "1.63.6"
+    "sass": "1.64.0"
   },
   "dependencies": {
     "@pinia/nuxt": "0.4.11",

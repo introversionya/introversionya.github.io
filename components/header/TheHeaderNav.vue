@@ -8,14 +8,13 @@ const links = reactive([
   { id: countId++, href: '#', description: 'Заметки', isActive: false, location: 'main' },
 ]);
 
-const linkMain = computed(() => links.filter((item) => item.location === 'main'));
-const linkExtra = computed(() => links.filter((item) => item.location === 'extra'));
-
 const navMain = ref(null);
 const navExtra = ref(null);
 const navExtraMenu = ref(null);
 const isActiveNavMain = ref(true);
 const isActiveNavExtra = ref(false);
+let lastLinkMain = null;
+let firstLinkExtra = null;
 let freeSpace = 0;
 let distance = 0;
 let used = 0;
@@ -42,31 +41,24 @@ const checkFreeSpace = () => {
   }
 };
 
-const lastLinkMain = computed(() => {
-  const mainLinks = links.filter((item) => item.location === 'main');
-  return mainLinks[mainLinks.length - 1];
-});
+const linkMain = computed(() => links.filter((item) => item.location === 'main'));
+const linkExtra = computed(() => links.filter((item) => item.location === 'extra'));
 
-const firstLinkExtra = computed(() => {
-  const extraLinks = links.filter((item) => item.location === 'extra');
-  return extraLinks[0];
-});
-
-const getDistance = () => {
+const getDistance = computed(() => {
   distance = isActiveNavMain.value
     ? parseInt(getComputedStyle(navMain.value, null).columnGap, 10)
     : isActiveNavExtra.value
     ? parseInt(getComputedStyle(navExtra.value, null).marginLeft, 10)
     : null;
-};
+});
 
-const setMarginStyle = () => {
+const setMarginStyle = computed(() => {
   !isActiveNavMain.value && isActiveNavExtra.value
     ? (navExtra.value.style.margin = '0 var(--header-nav-distance) 0 0')
     : isActiveNavMain.value && isActiveNavExtra.value
     ? (navExtra.value.style.margin = '0 0 0 var(--header-nav-distance)')
     : null;
-};
+});
 
 const isActiveNavigations = () => {
   !navMain.value?.children.length ? (isActiveNavMain.value = false) : null;
@@ -76,27 +68,30 @@ const isActiveNavigations = () => {
 const transferLink = (iteration) => {
   checkFreeSpace();
 
-  if (lastLinkMain.value && freeSpace < distance) {
+  lastLinkMain = linkMain.value[linkMain.value.length - 1];
+  firstLinkExtra = linkExtra.value[0];
+
+  if (lastLinkMain && freeSpace < distance) {
     isActiveNavExtra.value = true;
-    lastLinkMain.value.location = 'extra';
+    lastLinkMain.location = 'extra';
     used = window.innerWidth;
   }
 
-  if (firstLinkExtra.value && used < window.innerWidth) {
+  if (firstLinkExtra && used < window.innerWidth) {
     isActiveNavMain.value = true;
-    firstLinkExtra.value.location = 'main';
+    firstLinkExtra.location = 'main';
     used = 0;
   }
 
   nextTick(() => {
-    getDistance();
-    setMarginStyle();
     isActiveNavigations();
     iteration <= links.length ? transferLink(iteration + 1) : null;
   });
 };
 
 onMounted(() => {
+  getDistance.value;
+  setMarginStyle.value;
   transferLink(0);
   window.addEventListener('resize', () => transferLink(0));
 });

@@ -21,6 +21,7 @@ body {
 
 .link-underline {
   position: relative;
+  will-change: transform, width, color;
 
   &::before,
   &::after {
