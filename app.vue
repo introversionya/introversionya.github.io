@@ -1,20 +1,41 @@
 <script setup>
 import { useThemeStore, themeKey } from '@/stores/ThemeStore';
 
+const { disableScroll, enableScroll } = useScroll();
 const themeStore = useThemeStore();
 const config = useRuntimeConfig();
 const route = useRoute();
-
-const title = 'introversionya | %s';
-
-const currentUrl = computed(() => process.server ? `${config.linkProduction}${route.path}` : `${window.location.origin}${route.path}`);
-const ogImagePath = computed(() => process.server ? `${config.linkProduction}/meta/og-main.png` : `${window.location.origin}/meta/og-main.png`);
+const router = useRouter();
 
 const handleStorage = ({ key, newValue }) => key === themeKey && themeStore.updateState(...Object.values(JSON.parse(newValue)));
+const currentUrl = computed(() => process.server ? `${config.linkProduction}${route.fullPath}` : `${window.location.origin}${route.fullPath}`);
+const ogImagePath = computed(() => process.server ? `${config.linkProduction}/meta/og-main.png` : `${window.location.origin}/meta/og-main.png`);
+const title = 'introversionya | %s';
+const isActiveLoaderPage = ref(false);
+const visitedPage = [];
+
+router.beforeEach((to, from, next) => {
+  if (!visitedPage.includes(to.fullPath)) {
+    isActiveLoaderPage.value = true;
+    disableScroll();
+    visitedPage.push(to.fullPath);
+  }
+  next();
+});
+
+router.afterEach((to, from) => {
+  setTimeout(() => {
+    isActiveLoaderPage.value = false;
+    enableScroll();
+  }, 700);
+});
+
+router.onError(() => isActiveLoaderPage.value = false);
 
 onMounted(() => {
   themeStore.init();
   window.addEventListener('storage', handleStorage);
+  visitedPage.push(route.fullPath);
 });
 
 onUnmounted(() => window.removeEventListener('storage', handleStorage));
@@ -47,6 +68,7 @@ useHead(() => ({
 
 <template>
   <NuxtLayout name="default">
-    <NuxtPage />
+    <NuxtPage keepalive />
+    <TheLoaderPage v-if="isActiveLoaderPage" />
   </NuxtLayout>
 </template>

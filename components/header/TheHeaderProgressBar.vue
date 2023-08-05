@@ -2,6 +2,7 @@
 const result = ref(0);
 
 onMounted(() => {
+  calcProgress();
   window.addEventListener('scroll', calcProgress);
   window.addEventListener('resize', calcProgress);
 });
@@ -20,21 +21,23 @@ const calcProgress = () => {
 
 <template>
   <progress
-    class="header__bar"
+    class="header__progress"
     max="100"
     :value="result"
   ></progress>
 </template>
 
 <style lang="scss" scoped>
-.header__bar {
+.header__progress {
   appearance: none;
   position: absolute;
   left: 0;
-  bottom: -2px;
+  bottom: 0;
   width: 100%;
-  height: 2px;
+  height: 100%;
+  border-radius: 5px;
   pointer-events: none;
+  z-index: -1;
 
   &::-webkit-progress-bar {
     background-color: transparent;
@@ -46,6 +49,7 @@ const calcProgress = () => {
 
   &::-webkit-progress-value {
     background-color: var(--progress-bg-color);
+    border-radius: 5px;
   }
 }
 </style>

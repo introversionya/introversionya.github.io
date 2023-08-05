@@ -14,6 +14,12 @@ body {
   color: var(--main-color);
 }
 
+.no-scroll {
+  overflow-y: hidden;
+  position: fixed;
+  height: auto;
+}
+
 .title {
   font-weight: 700;
   font-size: 15px;
@@ -21,7 +27,6 @@ body {
 
 .link-underline {
   position: relative;
-  will-change: transform, width, color;
 
   &::before,
   &::after {

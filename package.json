@@ -14,16 +14,16 @@
     "deploy": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
-    "@nuxt/devtools": "0.6.7",
-    "@types/node": "20.4.2",
+    "@nuxt/devtools": "0.7.4",
+    "@types/node": "20.4.6",
     "autoprefixer": "10.4.14",
-    "nuxt": "3.6.3",
-    "postcss": "8.4.26",
+    "nuxt": "3.6.5",
+    "postcss": "8.4.27",
     "push-dir": "0.4.1",
-    "sass": "1.64.0"
+    "sass": "1.64.2"
   },
   "dependencies": {
     "@pinia/nuxt": "0.4.11",
-    "pinia": "2.1.4"
+    "pinia": "2.1.6"
   }
 }

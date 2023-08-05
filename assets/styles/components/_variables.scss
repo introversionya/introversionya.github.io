@@ -4,6 +4,8 @@
   --header-padding: 5px 0;
   --header-logo-line-distance: 75px;
   --header-nav-distance: 30px;
+  --cube-size: 70px;
+  --cube-color: var(--accent-color);
   --link-visited-color: blue;
   --selection-bg-color: var(--accent-color);
   --selection-color: var(--black);
@@ -14,15 +16,14 @@
 :root[data-theme="dark"] {
   --main-bg-color: #010409;
   --main-color: #e6edf3;
-  --content-bg-color: #161b22;
+  --content-bg-color: #0f1620;
   --accent-color: #888bd5;
+  --content-substrate-bg-color: #1b212b;
   --link-underline-bg-color-left: #686bb3;
   --link-underline-bg-color-right: #475d72;
-  --progress-bg-color: #68696c;
-  --header-inner-bg-color: #2b323c;
+  --progress-bg-color: #181c2b;
+  --border-color: #282828;
   --nav-extra-bg-color: var(--black);
-  // --theme-switcher-bg-color: var(--black);
-  // --theme-switcher-menu-icon-hover: var(--black);
 }
 
 

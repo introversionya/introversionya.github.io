@@ -41,14 +41,10 @@ const isDarkCustom = computed(() => themeStore.getTheme === 'dark' && themeStore
 <style lang="scss" scoped>
 .theme {
   display: flex;
-  gap: 0 15px;
-  padding: 5px 10px;
-  border-radius: 7px;
-  background-color: var(--black);
+  column-gap: 15px;
 }
 
 .theme__btn {
-  transform-style: preserve-3d;
   &--active {
     cursor: default;
     color: var(--accent-color);
@@ -61,9 +57,6 @@ const isDarkCustom = computed(() => themeStore.getTheme === 'dark' && themeStore
   &:active:not(.theme__btn--active),
   &:hover:not(.theme__btn--active) {
     color: var(--accent-color);
-    &:deep(svg) {
-      transform: scale(0.9);
-    }
   }
 }
 
@@ -73,8 +66,7 @@ const isDarkCustom = computed(() => themeStore.getTheme === 'dark' && themeStore
   fill: currentColor;
 
   &:not(.theme__btn--active) {
-    will-change: transform, color;
-    transition: transform 0.3s linear, color 0.3s linear;
+    transition: color 0.3s;
   }
 }
 </style>

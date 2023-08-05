@@ -28,9 +28,9 @@ export default defineNuxtConfig({
         { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
     },
+    // layoutTransition: true,
+    // pageTransition: { name: 'page', mode: 'out-in' },
     keepalive: true,
-    layoutTransition: true,
-    pageTransition: true,
   },
 
   ssr: true,

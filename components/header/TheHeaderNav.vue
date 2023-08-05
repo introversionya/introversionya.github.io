@@ -44,21 +44,21 @@ const checkFreeSpace = () => {
 const linkMain = computed(() => links.filter((item) => item.location === 'main'));
 const linkExtra = computed(() => links.filter((item) => item.location === 'extra'));
 
-const getDistance = computed(() => {
+const getDistance = () => {
   distance = isActiveNavMain.value
     ? parseInt(getComputedStyle(navMain.value, null).columnGap, 10)
     : isActiveNavExtra.value
     ? parseInt(getComputedStyle(navExtra.value, null).marginLeft, 10)
     : null;
-});
+};
 
-const setMarginStyle = computed(() => {
+const setMarginStyle = () => {
   !isActiveNavMain.value && isActiveNavExtra.value
-    ? (navExtra.value.style.margin = '0 var(--header-nav-distance) 0 0')
+    ? (navExtra.value.style.margin = '0')
     : isActiveNavMain.value && isActiveNavExtra.value
     ? (navExtra.value.style.margin = '0 0 0 var(--header-nav-distance)')
     : null;
-});
+};
 
 const isActiveNavigations = () => {
   !navMain.value?.children.length ? (isActiveNavMain.value = false) : null;
@@ -84,14 +84,14 @@ const transferLink = (iteration) => {
   }
 
   nextTick(() => {
+    setMarginStyle();
     isActiveNavigations();
     iteration <= links.length ? transferLink(iteration + 1) : null;
   });
 };
 
 onMounted(() => {
-  getDistance.value;
-  setMarginStyle.value;
+  getDistance();
   transferLink(0);
   window.addEventListener('resize', () => transferLink(0));
 });
