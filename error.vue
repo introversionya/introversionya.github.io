@@ -2,7 +2,7 @@
 import { useThemeStore } from '@/stores/ThemeStore';
 const themeStore = useThemeStore();
 const { error } = defineProps(['error']);
-const info = ref(null);
+const info = process.client ? window.location.origin + decodeURIComponent(error.url) + ' - адрес не найден' : null;
 
 const handleError = () => {
   clearError({ redirect: '/' });
@@ -11,7 +11,6 @@ const handleError = () => {
 
 onMounted(() => {
   themeStore.init();
-  info.value = window.location.origin + decodeURIComponent(error.url) + ' - адрес не найден'
 });
 
 useHead(() => ({
@@ -53,7 +52,7 @@ useHead(() => ({
 
   &__btn {
     padding: 10px 15px;
-    border: 2px solid;
+    border: 2px solid var(--border-color);
   }
 }
 </style>
