@@ -5,7 +5,6 @@
   --header-logo-line-distance: 65px;
   --header-nav-distance: 30px;
   --cube-size: 70px;
-  --cube-color: var(--accent-color);
   --link-visited-color: blue;
   --selection-bg-color: var(--accent-color);
   --selection-color: var(--black);
@@ -25,15 +24,19 @@
   --border-color: #282828;
   --nav-extra-bg-color: var(--black);
   --about-card-socials-fill: var(--white);
+  --cube-bg-color: var(--black);
+  --cube-color: var(--white);
 }
 
 :root[data-theme='light'] {
   --main-bg-color: #f0f0f0;
   --main-color: #010409;
-  --content-bg-color: #fff;
+  --content-bg-color: #fbf7f7;
   --content-substrate-bg-color: #dfdfdf;
   --progress-bg-color: #d8d8d8;
   --border-color: #d0d0d0;
   --nav-extra-bg-color: var(--white);
   --about-card-socials-fill: var(--black);
+  --cube-bg-color: var(--white);
+  --cube-color: var(--black);
 }

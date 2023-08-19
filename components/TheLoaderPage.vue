@@ -49,7 +49,7 @@ const textBox = ref('Загрузка...');
   width: 100%;
   height: 100%;
   border: 2px dotted var(--cube-color);
-  background-color: var(--black);
+  background-color: var(--cube-bg-color);
   color: var(--cube-color);
 }
 
