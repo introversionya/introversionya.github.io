@@ -1,64 +1,39 @@
 :root {
-  --main-font: "Roboto", sans-serif;
-  --second-font: "Rubik", sans-serif;
+  --main-font: 'Roboto', sans-serif;
+  --second-font: 'Rubik', sans-serif;
   --header-padding: 5px 0;
-  --header-logo-line-distance: 75px;
+  --header-logo-line-distance: 65px;
   --header-nav-distance: 30px;
   --cube-size: 70px;
   --cube-color: var(--accent-color);
   --link-visited-color: blue;
   --selection-bg-color: var(--accent-color);
   --selection-color: var(--black);
+  --accent-color: #9fa1d9;
+  --link-underline-bg-color-left: #686bb3;
+  --link-underline-bg-color-right: #475d72;
   --black: #000;
   --white: #fff;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
   --main-bg-color: #010409;
   --main-color: #e6edf3;
   --content-bg-color: #0f1620;
-  --accent-color: #888bd5;
   --content-substrate-bg-color: #1b212b;
-  --link-underline-bg-color-left: #686bb3;
-  --link-underline-bg-color-right: #475d72;
-  --progress-bg-color: #181c2b;
+  --progress-bg-color: #262c44;
   --border-color: #282828;
   --nav-extra-bg-color: var(--black);
+  --about-card-socials-fill: var(--white);
 }
 
-
-
-// [data-theme="dark"] {
-//   // body && header
-//   --body-bg: #1a1e22;
-//   --body-color: #939393;
-//   --header-bg: #212a33;
-//   --header-bar-color: #727272;
-//   --header-logo-color: #939393;
-//   --header-logo-hover: #fff;
-//   --header-nav-link-color: #939393;
-//   --header-nav-link-hover-color: #fff;
-//   --header-nav-link-active-color: #fff;
-//   --theme-switcher-color: #939393;
-//   --theme-switcher-bg: #212a33;
-//   --theme-switcher-hover: #fff;
-//   --theme-switcher-menu-bg: #151515;
-//   --theme-switcher-menu-hover: #000;
-//   --burger-btn-color: #939393;
-//   --burger-btn-color-hover: #fff;
-//   // about
-//   --about-color: #a2a2a2;
-//   --about-inner-bg-color: #0e1017;
-//   --about-card-gradient: linear-gradient(45deg, #212a33 50%, #686868 50%);
-//   --about-card-blur: blur(70px);
-//   --about-link-bg: blue;
-//   --about-link-hover-bg: #717171;
-//   --about-link-hover-path: #fff;
-//   --about-technologies-item-bg: #939393;
-//   --about-technologies-item-color: #fff;
-// }
-
-// /* light scheme */
-// [data-theme="light"] {
-//   //
-// }
+:root[data-theme='light'] {
+  --main-bg-color: #f0f0f0;
+  --main-color: #010409;
+  --content-bg-color: #fff;
+  --content-substrate-bg-color: #dfdfdf;
+  --progress-bg-color: #d8d8d8;
+  --border-color: #d0d0d0;
+  --nav-extra-bg-color: var(--white);
+  --about-card-socials-fill: var(--black);
+}

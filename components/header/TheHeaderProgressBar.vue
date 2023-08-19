@@ -35,7 +35,6 @@ const calcProgress = () => {
   bottom: 0;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
   pointer-events: none;
   z-index: -1;
 
@@ -49,7 +48,6 @@ const calcProgress = () => {
 
   &::-webkit-progress-value {
     background-color: var(--progress-bg-color);
-    border-radius: 5px;
   }
 }
 </style>

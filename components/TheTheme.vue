@@ -5,7 +5,7 @@ const iconsStore = useIconsStore().getIcons;
 const themeStore = useThemeStore();
 
 const isLightCustom = computed(() => themeStore.getTheme === 'light' && themeStore.getMode === 'custom');
-const isSystemAuto = computed(() => themeStore.getTheme === 'dark' && themeStore.getMode === 'auto');
+const isSystemAuto = computed(() => (themeStore.getTheme === 'dark' || themeStore.getTheme === 'light') && themeStore.getMode === 'auto');
 const isDarkCustom = computed(() => themeStore.getTheme === 'dark' && themeStore.getMode === 'custom');
 </script>
 

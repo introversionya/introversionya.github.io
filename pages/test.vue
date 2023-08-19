@@ -1,4 +1,8 @@
 <script setup>
+useHead(() => ({
+  meta: { name: 'robots', content: 'noindex, nofollow' }
+}))
+
 const router = useRouter();
 const isActive = ref(true);
 const targetLeft = ref(null);

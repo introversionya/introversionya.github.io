@@ -70,7 +70,7 @@ const iconsStore = useIconsStore().getIcons;
   border-radius: 50%;
   border: 2px solid var(--accent-color);
   overflow: hidden;
-  background-color: var(--content-bg-color);
+  background-color: var(--content-substrate-bg-color);
   width: 35px;
   height: 35px;
 
@@ -86,20 +86,17 @@ const iconsStore = useIconsStore().getIcons;
 }
 
 .about__link-icon:deep(svg) {
-  fill: var(--accent-color);
+  // fill: var(--accent-color);
+  fill: var(--about-card-socials-fill);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   .about__card {
-    align-self: center;
-    max-width: 100%;
+    max-width: 330px;
   }
   .about__photo {
     width: 100px;
     height: 100px;
-  }
-  .about__socials {
-    margin-top: 20px;
   }
   .about__link {
     width: 30px;
@@ -107,6 +104,20 @@ const iconsStore = useIconsStore().getIcons;
   }
   .about__link-icon {
     padding: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about__card {
+    align-self: center;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .about__photo {
+    width: 80px;
+    height: 80px;
   }
 }
 </style>
