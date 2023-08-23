@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "0.8.0",
-    "@types/node": "20.5.1",
+    "@types/node": "20.5.3",
     "autoprefixer": "10.4.15",
     "nuxt": "3.6.5",
     "postcss": "8.4.28",
