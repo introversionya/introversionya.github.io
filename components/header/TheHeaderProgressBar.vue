@@ -44,10 +44,12 @@ const calcProgress = () => {
 
   &::-moz-progress-bar {
     background-color: var(--progress-bg-color);
+    border-radius: 5px;
   }
 
   &::-webkit-progress-value {
     background-color: var(--progress-bg-color);
+    border-radius: 5px;
   }
 }
 </style>

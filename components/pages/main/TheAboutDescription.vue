@@ -3,7 +3,7 @@
 <template>
   <div class="about__description">
     <div class="about__text">
-      <p class="about__paragraph">Меня зовут <strong>Антон Демиденко</strong> я&nbsp;frontend разработчик.</p>
+      <p class="about__paragraph">Меня зовут <strong>Антон Демиденко</strong>&nbsp;&mdash; я&nbsp;frontend разработчик.</p>
       <p class="about__paragraph">Создаю пользовательские интерфейсы для веб-приложений и&nbsp;сайтов.</p>
       <p class="about__paragraph">
         Я&nbsp;постоянно учусь и&nbsp;изучаю новые технологии, чтобы улучшить свои навыки и&nbsp;оставаться в&nbsp;курсе последних тенденций
@@ -59,6 +59,7 @@
 }
 
 .about__technologies-item {
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 5px 10px;
   background-color: var(--content-substrate-bg-color);

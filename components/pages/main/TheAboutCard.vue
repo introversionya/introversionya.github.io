@@ -32,6 +32,7 @@ const iconsStore = useIconsStore().getIcons;
 .about__card {
   background-color: var(--content-substrate-bg-color);
   padding: 10px;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   align-self: flex-start;
   max-width: 400px;
@@ -57,6 +58,7 @@ const iconsStore = useIconsStore().getIcons;
   margin-top: 15px;
   white-space: nowrap;
   text-shadow: 0 0 0 var(--accent-color), 0 0 5px;
+  color: var(--about-card-position-color);
 }
 
 .about__socials {
@@ -70,7 +72,7 @@ const iconsStore = useIconsStore().getIcons;
   border-radius: 50%;
   border: 2px solid var(--accent-color);
   overflow: hidden;
-  background-color: var(--content-substrate-bg-color);
+  background-color: var(--content-bg-color);
   width: 35px;
   height: 35px;
 
@@ -86,8 +88,7 @@ const iconsStore = useIconsStore().getIcons;
 }
 
 .about__link-icon:deep(svg) {
-  // fill: var(--accent-color);
-  fill: var(--about-card-socials-fill);
+  fill: var(--accent-color);
 }
 
 @media (max-width: 920px) {

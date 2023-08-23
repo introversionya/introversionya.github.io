@@ -61,7 +61,7 @@ useHead(() => ({
     { hid: 'description', name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
     { hid: 'keywords', name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
     { hid: 'author', name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
-    { hid: 'name', name: 'color-scheme', content: themeStore.getTheme },
+    { hid: 'name', name: 'color-scheme', content: themeStore.getTheme ?? 'light' },
   ],
 }));
 </script>

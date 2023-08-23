@@ -34,6 +34,7 @@ const textBox = ref('Загрузка...');
   width: var(--cube-size);
   height: var(--cube-size);
   font-size: 10px;
+  font-weight: 700;
   transform-style: preserve-3d;
   will-change: transform;
   animation: cube-rotation 3s linear infinite;

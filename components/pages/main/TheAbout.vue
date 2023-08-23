@@ -24,11 +24,11 @@
 }
 
 .about__title {
-  border-radius: inherit;
+  border-radius: 5px;
   text-align: center;
   padding: 15px 10px;
   white-space: nowrap;
-  background-color: var(--main-bg-color);
+  background-color: var(--content-substrate-bg-color);
 }
 
 .about__content {
