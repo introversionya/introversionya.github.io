@@ -6,5 +6,4 @@ useHead({
 
 <template>
   <TheAbout />
-  <TheWorks v-if="false" />
 </template>

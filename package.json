@@ -14,10 +14,10 @@
     "deploy": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
-    "@nuxt/devtools": "0.8.0",
-    "@types/node": "20.5.3",
+    "@nuxt/devtools": "0.8.2",
+    "@types/node": "20.5.7",
     "autoprefixer": "10.4.15",
-    "nuxt": "3.6.5",
+    "nuxt": "3.7.0",
     "postcss": "8.4.28",
     "push-dir": "0.4.1",
     "sass": "1.66.1"

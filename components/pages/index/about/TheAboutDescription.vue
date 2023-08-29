@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div class="about__description">
     <div class="about__text">
@@ -11,6 +9,7 @@
       </p>
       <p class="about__paragraph">Я&nbsp;уверен, что мой опыт и&nbsp;знания помогут мне стать ценным членом любой команды фронтенд разработки.</p>
     </div>
+
     <div class="about__technologies">
       <strong class="about__technologies-title">Мой стек:</strong>
       <ul class="about__technologies-list">
@@ -33,7 +32,6 @@
 }
 
 .about__text {
-  line-height: 1.3;
   margin-bottom: 15px;
 }
 
@@ -61,7 +59,7 @@
 .about__technologies-item {
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  padding: 5px 10px;
+  padding: 3px 10px;
   background-color: var(--content-substrate-bg-color);
 }
 </style>

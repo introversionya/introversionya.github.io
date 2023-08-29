@@ -53,5 +53,6 @@ const iconsStore = useIconsStore().getIcons;
 
 .header__logo-description {
   display: block;
+  line-height: 1;
 }
 </style>

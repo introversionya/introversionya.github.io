@@ -18,9 +18,11 @@ useHead(() => ({
 </script>
 
 <template>
-  <div class="error container">
-    <h1 class="error__title">{{ error.statusCode }}</h1>
-    <button class="error__btn" @click="handleError">На главную</button>
+  <div>
+    <div class="error container">
+      <h1 class="error__title">{{ error.statusCode }}</h1>
+      <button class="error__btn" @click="handleError">На главную</button>
+    </div>
   </div>
 </template>
 
@@ -36,7 +38,6 @@ useHead(() => ({
   &__title {
     font-weight: 700;
     font-size: 50px;
-    line-height: 100%;
     margin-bottom: 50px;
   }
 

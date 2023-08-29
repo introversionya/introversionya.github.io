@@ -7,15 +7,11 @@
 body {
   font-family: var(--main-font);
   font-size: 13px;
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
-  line-height: 100%;
+  line-height: normal;
   background-color: var(--main-bg-color);
   color: var(--main-color);
-}
-
-section {
-  margin-bottom: 15px;
 }
 
 .no-scroll {
@@ -39,7 +35,7 @@ section {
     content: '';
     width: 0;
     height: 2px;
-    bottom: -4px;
+    bottom: -3px;
     transition: width linear 0.1s;
   }
 
