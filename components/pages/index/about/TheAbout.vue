@@ -1,5 +1,5 @@
 <template>
-  <section class="section about">
+  <section id="about" class="section about">
     <div class="container">
       <div class="section__inner about__inner">
         <h1 class="section__title about__title title">Anton Demidenko[introversionya]</h1>

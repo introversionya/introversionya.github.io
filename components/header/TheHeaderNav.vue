@@ -2,8 +2,8 @@
 let countId = 0;
 
 const links = reactive([
-  { id: countId++, href: '#', description: 'Обо мне', isActive: true, location: 'main' },
-  { id: countId++, href: '#', description: 'Мои работы', isActive: false, location: 'main' },
+  { id: countId++, href: 'http://localhost:3000/#about', description: 'Обо мне', isActive: true, location: 'main' },
+  { id: countId++, href: 'http://localhost:3000/#project', description: 'Мои работы', isActive: false, location: 'main' },
   { id: countId++, href: 'blog', description: 'Блог', isActive: false, location: 'main' },
 ]);
 

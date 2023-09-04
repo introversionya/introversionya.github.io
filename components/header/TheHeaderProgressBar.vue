@@ -13,7 +13,7 @@ onUnmounted(() => {
 });
 
 const calcProgress = () => {
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const height = document.documentElement.scrollHeight - window.innerHeight;
   const posY = window.scrollY;
   posY !== 0 && height !== 0 ? (result.value = (posY / height) * 100) : (result.value = 0);
 };
