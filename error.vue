@@ -2,7 +2,7 @@
 import { useThemeStore } from '@/stores/ThemeStore';
 const themeStore = useThemeStore();
 
-defineProps({ error: Object });
+const { error } = defineProps({ error: Object });
 
 const handleError = () => {
   clearError({ redirect: '/' });
@@ -18,11 +18,9 @@ useHead(() => ({
 </script>
 
 <template>
-  <div>
-    <div class="error container">
-      <h1 class="error__title">{{ error.statusCode }}</h1>
-      <button class="error__btn" @click="handleError">На главную</button>
-    </div>
+  <div class="error container" v-if="error.statusCode === 404">
+    <h1 class="error__title">{{ error.message }}</h1>
+    <button class="error__btn" @click="handleError">На главную</button>
   </div>
 </template>
 
