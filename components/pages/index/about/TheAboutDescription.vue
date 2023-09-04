@@ -1,3 +1,16 @@
+<script setup>
+let countId = 0;
+
+const technologies = reactive([
+  { id: countId++, description: 'html' },
+  { id: countId++, description: 'css' },
+  { id: countId++, description: 'js' },
+  { id: countId++, description: 'vue' },
+  { id: countId++, description: 'nuxt' },
+  { id: countId++, description: 'git' },
+]);
+</script>
+
 <template>
   <div class="about__description">
     <div class="about__text">
@@ -13,12 +26,9 @@
     <div class="about__technologies">
       <strong class="about__technologies-title">Мой стек:</strong>
       <ul class="about__technologies-list">
-        <li class="about__technologies-item">html</li>
-        <li class="about__technologies-item">css</li>
-        <li class="about__technologies-item">js</li>
-        <li class="about__technologies-item">vue</li>
-        <li class="about__technologies-item">nuxt</li>
-        <li class="about__technologies-item">git</li>
+        <li class="about__technologies-item" v-for="technology in technologies" :key="technology.id">
+          {{ technology.description }}
+        </li>
       </ul>
     </div>
   </div>

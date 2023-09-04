@@ -14,28 +14,28 @@ const title = 'introversionya | %s';
 const isActiveLoaderPage = ref(false);
 const visitedPage = [];
 
-router.beforeEach((to, from, next) => {
-  if (!visitedPage.includes(to.fullPath)) {
-    isActiveLoaderPage.value = true;
-    disableScroll();
-    visitedPage.push(to.fullPath);
-  }
-  next();
-});
+// router.beforeEach((to, from, next) => {
+//   if (!visitedPage.includes(to.fullPath)) {
+//     isActiveLoaderPage.value = true;
+//     disableScroll();
+//     visitedPage.push(to.fullPath);
+//   }
+//   next();
+// });
 
-router.afterEach((to, from) => {
-  setTimeout(() => {
-    isActiveLoaderPage.value = false;
-    enableScroll();
-  }, 700);
-});
+// router.afterEach((to, from) => {
+//   setTimeout(() => {
+//     isActiveLoaderPage.value = false;
+//     enableScroll();
+//   }, 700);
+// });
 
-router.onError(() => isActiveLoaderPage.value = false);
+// router.onError(() => isActiveLoaderPage.value = false);
 
 onMounted(() => {
   themeStore.init();
   window.addEventListener('storage', handleStorage);
-  visitedPage.push(route.fullPath);
+  // visitedPage.push(route.fullPath);
 });
 
 onUnmounted(() => window.removeEventListener('storage', handleStorage));
@@ -45,23 +45,23 @@ useHead(() => ({
   titleTemplate: title,
   meta: [
     // og
-    { hid: 'og:title', property: 'og:title', content: title },
-    { hid: 'og:description', property: 'og:description', content: 'Персональный сайт introversionya | %s' },
-    { hid: 'og:image', property: 'og:image', content: ogImagePath },
-    { hid: 'vk:image', property: 'vk:image', content: ogImagePath },
-    { hid: 'og:image:type', property: 'og:image:type', content: 'image/png' },
-    { hid: 'og:image:width', property: 'og:image:width', content: '1200' },
-    { hid: 'og:image:height', property: 'og:image:height', content: '630' },
-    { hid: 'og:image:alt', property: 'og:image:alt', content: "Логотип сайта introversionya" },
-    { hid: 'og:type', property: 'og:type', content: 'website' },
-    { hid: 'og:site_name', property: 'og:site_name', content: 'introversionya' },
-    { hid: 'og:url', property: 'og:url', content: currentUrl },
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: 'Персональный сайт introversionya | %s' },
+    { property: 'og:image', content: ogImagePath },
+    { property: 'vk:image', content: ogImagePath },
+    { property: 'og:image:type', content: 'image/png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:alt', content: "Логотип сайта introversionya" },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:site_name', content: 'introversionya' },
+    { property: 'og:url', content: currentUrl },
     // seo
-    { hid: 'robots', name: 'robots', content: 'index, follow' },
-    { hid: 'description', name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
-    { hid: 'keywords', name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
-    { hid: 'author', name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
-    { hid: 'name', name: 'color-scheme', content: themeStore.getTheme ?? 'light' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
+    { name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
+    { name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
+    { name: 'color-scheme', content: themeStore.getTheme ?? 'light' },
   ],
 }));
 </script>

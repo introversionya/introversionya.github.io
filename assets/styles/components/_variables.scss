@@ -5,9 +5,10 @@
   --header-logo-line-distance: 65px;
   --header-nav-distance: 30px;
   --cube-size: 70px;
-  --link-visited-color: blue;
-  --selection-bg-color: var(--accent-color);
   --cube-bg-color: var(--content-bg-color);
+  --link-visited-color: blue;
+  --progress-bg-color: var(--content-substrate-bg-color);
+  --selection-bg-color: var(--accent-color);
   --link-underline-bg-color-left: #7b6fc6;
   --link-underline-bg-color-right: #a2a5ee;
   --black: #000;
@@ -21,7 +22,6 @@
   --accent-color: #9fa1d9;
   --content-bg-color: #0f1620;
   --content-substrate-bg-color: #1b212b;
-  --progress-bg-color: #15202f;
   --border-color: #3e3e3e;
   --nav-extra-bg-color: var(--black);
   --cube-color: var(--white);
@@ -34,7 +34,6 @@
   --accent-color: #6a5acd;
   --content-bg-color: #eeebeb;
   --content-substrate-bg-color: #d5d5d5;
-  --progress-bg-color: #d8d8d8;
   --border-color: #979797;
   --nav-extra-bg-color: var(--white);
   --cube-color: var(--black);

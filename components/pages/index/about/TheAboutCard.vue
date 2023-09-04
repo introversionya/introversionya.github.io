@@ -1,6 +1,15 @@
 <script setup>
 import { useIconsStore } from '@/stores/IconsStore';
 const iconsStore = useIconsStore().getIcons;
+
+let countId = 0;
+
+const socialsLinks = reactive([
+  { id: countId++, url: 'https://vk.com/introya', title: 'Вконтакте\nhttps://vk.com/introya', icon: iconsStore.vk },
+  { id: countId++, url: 'https://t.me/introversionya', title: 'Телеграм\nhttps://t.me/introversionya', icon: iconsStore.tg },
+  { id: countId++, url: 'https://github.com/introversionya', title: 'Гитхаб\nhttps://github.com/introversionya', icon: iconsStore.gh },
+  { id: countId++, url: 'mailto:yaintroversivnost@gmail.com', title: 'Написать на почту\nyaintroversivnost@gmail.com', icon: iconsStore.email },
+]);
 </script>
 
 <template>
@@ -8,25 +17,13 @@ const iconsStore = useIconsStore().getIcons;
     <div class="about__profile">
 
       <div class="about__author">
-        <img src="@/assets/images/my-photo.jpg" alt="Anton Demidenko[introversionya] - автор сайта">
+        <img src="@/assets/images/my-photo.jpg" alt="Anton Demidenko[introversionya]&nbsp;&mdash; автор сайта">
         <span class="about__position">Frontend developer</span>
       </div>
 
       <div class="about__socials">
-        <NuxtLink class="about__link" to="https://vk.com/introya" target="_blank" title="https://vk.com/introya">
-          <span class="about__link-icon" v-html="iconsStore.vk"></span>
-        </NuxtLink>
-
-        <NuxtLink class="about__link" to="https://t.me/introversionya" target="_blank" title="https://t.me/introversionya">
-          <span class="about__link-icon" v-html="iconsStore.tg"></span>
-        </NuxtLink>
-
-        <NuxtLink class="about__link" to="https://github.com/introversionya" target="_blank" title="https://github.com/introversionya">
-          <span class="about__link-icon" v-html="iconsStore.gh"></span>
-        </NuxtLink>
-
-        <NuxtLink class="about__link" to="mailto:yaintroversivnost@gmail.com" title="yaintroversivnost@gmail.com">
-          <span class="about__link-icon" v-html="iconsStore.email"></span>
+        <NuxtLink class="about__link" v-for="link in socialsLinks" :to="link.url" :key="link.countId" :title="link.title" target="_blank">
+          <span class="about__link-icon" v-html="link.icon"></span>
         </NuxtLink>
       </div>
 

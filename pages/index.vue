@@ -6,4 +6,5 @@ useHead({
 
 <template>
   <TheAbout />
+  <TheProject />
 </template>

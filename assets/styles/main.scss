@@ -14,6 +14,46 @@ body {
   color: var(--main-color);
 }
 
+.section {
+  margin-bottom: 10px;
+  &__inner {
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background-color: var(--content-bg-color);
+  }
+  &__title {
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--content-substrate-bg-color);
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  &__content {
+    padding: 10px;
+  }
+}
+
+.hidden-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  &--str-one {
+    -webkit-line-clamp: 1;
+  }
+  &--str-two {
+    -webkit-line-clamp: 2;
+  }
+  &--str-three {
+    -webkit-line-clamp: 3;
+  }
+}
+
 .no-scroll {
   overflow-y: hidden;
   position: fixed;
