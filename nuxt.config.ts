@@ -28,8 +28,6 @@ export default defineNuxtConfig({
         { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
     },
-    // layoutTransition: true,
-    // pageTransition: { name: 'page', mode: 'out-in' },
     keepalive: true,
   },
 
@@ -43,11 +41,15 @@ export default defineNuxtConfig({
     plugins: production
       ? {
           autoprefixer: {
-            overrideBrowserslist: ['cover 99.5%'],
+            overrideBrowserslist: ['cover 100%'],
           },
         }
       : {},
   },
+
+  plugins: [
+  { src: '~/plugins/test.js', mode: 'all' }
+  ],
 
   runtimeConfig: {
     // private

@@ -2,7 +2,9 @@
   <section id="about" class="section about">
     <div class="container">
       <div class="section__inner about__inner">
-        <h1 class="section__title about__title title">Anton Demidenko[introversionya]</h1>
+        <h1 class="section__title about__title title">
+          <span class="hidden-text hidden-text--str-one">Anton Demidenko[introversionya]</span>
+        </h1>
         <div class="section__content about__content">
           <TheAboutCard />
           <TheAboutDescription />

@@ -1,6 +1,8 @@
 <script setup>
 import { useThemeStore, themeKey } from '@/stores/ThemeStore';
 
+
+
 const { disableScroll, enableScroll } = useScroll();
 const themeStore = useThemeStore();
 const config = useRuntimeConfig();
@@ -30,10 +32,11 @@ const visitedPage = [];
 //   }, 700);
 // });
 
-// router.onError(() => isActiveLoaderPage.value = false);
 
+
+// router.onError(() => isActiveLoaderPage.value = false);
 onMounted(() => {
-  themeStore.init();
+  // themeStore.init();
   window.addEventListener('storage', handleStorage);
   // visitedPage.push(route.fullPath);
 });
@@ -61,9 +64,14 @@ useHead(() => ({
     { name: 'description', content: 'Персональный сайт веб-разработчика Anton Demidenko[introversionya]. Блог, портфолио, статьи, программирование и все что связано с веб-разработкой' },
     { name: 'keywords', content: 'web, js, vue, spa, blog, portfolio, introversionya, Anton, Demidenko' },
     { name: 'author', content: 'Anton Demidenko[introversionya], yaintroversivnost@gmail.com' },
-    { name: 'color-scheme', content: themeStore.getTheme ?? 'light' },
+    { name: 'color-scheme', content: themeStore.getTheme },
   ],
 }));
+
+// ----------------------------------------
+
+
+// ----------------------------------------
 </script>
 
 <template>

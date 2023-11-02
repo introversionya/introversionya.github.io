@@ -70,8 +70,12 @@ const links = reactive([
         v-html="link.icon"
       ></span>
       <div class="project__item-wrap">
-        <h3 class="project__item-title hidden-text hidden-text--str-one">{{ link.title }}</h3>
-        <p class="project__item-description hidden-text hidden-text--str-one">{{ link.description }}</p>
+        <h3 class="project__item-title">
+          <span class="hidden-text hidden-text--str-one">{{ link.title }}</span>
+        </h3>
+        <p class="project__item-description hidden-text hidden-text--str-one">
+          <span class="hidden-text hidden-text--str-one">{{ link.description }}</span>
+        </p>
       </div>
     </div>
   </NuxtLink>
@@ -109,7 +113,10 @@ const links = reactive([
   }
 }
 
-// .project__item-wrap {}
+.project__item-wrap {
+  width: 100%;
+  height: 100%;
+}
 
 .project__item-title {
   font-weight: 700;

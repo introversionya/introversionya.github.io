@@ -2,7 +2,9 @@
   <section id="project" class="section project">
     <div class="container">
       <div class="section__inner project__inner">
-        <h2 class="section__title project__title title">Мои работы</h2>
+        <h2 class="section__title project__title title">
+          <span class="hidden-text hidden-text--str-one">Мои работы</span>
+        </h2>
         <div class="section__content project__content">
           <TheProjectLink />
         </div>

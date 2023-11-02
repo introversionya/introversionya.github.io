@@ -12,5 +12,6 @@
   position: absolute;
   inset: 0;
   height: fit-content;
+  min-height: 100%;
 }
 </style>

@@ -29,9 +29,6 @@ body {
     background-color: var(--content-substrate-bg-color);
     padding: 10px;
     text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
   &__content {
     padding: 10px;
